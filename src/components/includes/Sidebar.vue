@@ -64,7 +64,7 @@ export default {
 
         </ul>
       </li>
-      <li v-if="this.permissions.includes('trade-licence')">
+      <li>
         <a href="javaScript:void();" class="waves-effect">
           <i class="zmdi zmdi-view-dashboard"></i> <span>ট্রেড লাইসেন্স</span><i class="fa fa-angle-left pull-right"></i>
         </a>

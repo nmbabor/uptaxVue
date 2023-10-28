@@ -1,11 +1,13 @@
 <script>
 import AreaService from '@/services/AreaService'
 import TradeLicenceService from '@/services/TradeLicenceService'
+import TaxCollectionService from '@/services/TaxCollectionService'
 export default {
   name: 'createTradeLicence',
   data () {
     return {
-        bazar: [],
+      years: [],
+      bazar: [],
       form: {
         trade_licence_no:'',
         holding_no:'',
@@ -18,15 +20,28 @@ export default {
         religion:'ইসলাম',
         gender:'পুরুষ',
         nid:'',
-        annual_tax:'',
+        annual_tax:0,
         tax_due:'0',
         others_bill_details:'',
         others_bill:'0',
         union_id:'',
         word:'',
         bazar_id:'',
+        present_address:'',
+        permanent_address:'',
+        own_rent:'',
+        signboard_length:'',
+        business_start_year:'',
+        signboard_fee:0,
+        income_tax:0,
+        vat:0,
+        service_charge:0,
+        correction_fee:0,
+        tin_number:'',
+        bin_number:'',
       },
       validateErrors: [],
+      isPresentSame: false
     }
   },
   mounted(){
@@ -35,7 +50,9 @@ export default {
   methods: {
     async getData(){
       this.form.union_id = this.$union_id
-      this.loadBazar()
+      this.loadBazar();
+       const yearsData = await TaxCollectionService.years()
+      this.years = yearsData.data
     },
     async loadBazar(){
        if(this.form.union_id!==''){
@@ -46,6 +63,11 @@ export default {
          this.bazar = []
        }
 
+    },
+    permanentAddressSet(){
+      if(!this.isPresentSame){
+        this.form.permanent_address = this.form.present_address;
+      }
     },
 
     async validateBeforeSubmit() {
@@ -178,8 +200,10 @@ export default {
 
                 </div>
                 <div class="row">
-                  
-                    
+                  <div class="form-group col-md-3">
+                      <label for="business_type">ব্যবসার ধরণ</label>
+                      <input type="text" name="business_type" v-model="form.business_type" id="business_type" placeholder="ব্যবসার ধরণ" class="form-control">
+                  </div>
                     <div class="form-group col-md-3">
                         <label for="gender"> মালিকের লিঙ্গ</label>
                         <select name="gender" v-validate="'required'" :class="{'form-control': true, 'text-danger': errors.has('gender') }" v-model="form.gender" required="">
@@ -213,34 +237,92 @@ export default {
 
                 </div>
                 <div class="row">
+                  <div class="form-group col-md-6">
+                      <label for="present_address"> বর্তমান ঠিকানা  </label>
+                      <input type="text" name="present_address" v-model="form.present_address" id="present_address" placeholder="বর্তমান ঠিকানা" class="form-control">
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="permanent_address">স্থায়ী ঠিকানা</label>
+                      <div class="input-group">
+                        <label class="input-group-text">
+                          <input type="checkbox" v-model="isPresentSame" @click="permanentAddressSet" class="mr-2">
+                          একই
+                        </label>
+                         <input type="text" v-model="form.permanent_address" name="permanent_address" id="permanent_address" placeholder="স্থায়ী ঠিকানা"class="form-control">
+                      </div><!-- /input-group -->
+                  </div>
+                </div>
+                <div class="row">
                   <div class="form-group col-md-3">
-                      <label for="business_type">ব্যবসার ধরণ</label>
-                      <input type="text" name="business_type" v-model="form.business_type" id="business_type" placeholder="ব্যবসার ধরণ" class="form-control">
+                      <label for="business_start_year">ব্যবসার শুরু করার অর্থ বছর</label>
+                       <select class="form-control" required v-model="form.business_start_year">
+                          <option value=""> -বছর নির্বাচন করুন- </option>
+                          <option v-for="(data,i) in years" :key="i" :value="data.id"> {{data.name}} </option>
+                        </select>
                   </div>
                   <div class="form-group col-md-3">
-                      <label for="annual_tax">বার্ষিক লাইসেন্স ফি</label>
-                      <input type="number" min="0" v-model="form.annual_tax" name="annual_tax" id="annual_tax" placeholder="বার্ষিক লাইসেন্স ফি" v-validate="'required'" :class="{'form-control': true, 'text-danger': errors.has('annual_tax') }">
+                      <label for="own_rent">প্রতিষ্ঠানের মালিকানা</label>
+                      <select name="own_rent" v-model="form.own_rent" required="" class="form-control">
+                          <option value='' selected>-সিলেক্ট মালিকানা-</option>
+                          <option value="নিজস্ব">নিজস্ব</option>
+                          <option value="ভাড়া">ভাড়া</option>
+                      </select>
+                  </div>
+                  <div class="form-group col-md-3">
+                      <label for="signboard_length"> সাইনবোর্ড এর আয়তন </label>
+                      <input type="text" v-model="form.signboard_length" name="signboard_length" id="signboard_length" class="form-control">
+                  </div>
+                   <div class="form-group col-md-3">
+                      <label for="signboard_fee">সাইনবোর্ড ফি</label>
+                      <input type="number" min="0" v-model="form.signboard_fee" name="signboard_fee" id="signboard_fee" placeholder="" v-validate="'required'" :class="{'form-control': true, 'text-danger': errors.has('signboard_fee') }">
+                      <span v-show="errors.has('signboard_fee')" class="help text-danger">{{ errors.first('signboard_fee') }}</span>
+                      <span v-if="validateErrors.signboard_fee" class="help text-danger">{{validateErrors.signboard_fee[0] }}</span>
+                  </div>
+                </div>
+                <div class="row">
+                 
+                  <div class="form-group col-md-3">
+                      <label for="annual_tax">ব্যবসা ও ভিত্তির উপর কর</label>
+                      <input type="number" min="0" v-model="form.annual_tax" name="annual_tax" id="annual_tax" placeholder="" v-validate="'required'" :class="{'form-control': true, 'text-danger': errors.has('annual_tax') }">
                       <span v-show="errors.has('annual_tax')" class="help text-danger">{{ errors.first('annual_tax') }}</span>
                       <span v-if="validateErrors.annual_tax" class="help text-danger">{{validateErrors.annual_tax[0] }}</span>
                   </div>
                   <div class="form-group col-md-3">
-                      <label for="tax_due">বকেয়া ফি</label>
-                      <input type="number" min="0" v-model="form.tax_due" name="tax_due" id="tax_due" placeholder="বকেয়া কর" :class="{'form-control': true, 'text-danger': errors.has('tax_due') }">
-                      <span v-show="errors.has('tax_due')" class="help text-danger">{{ errors.first('tax_due') }}</span>
-                      <span v-if="validateErrors.tax_due" class="help text-danger">{{validateErrors.tax_due[0] }}</span>
+                      <label for="income_tax">আয় কর / উৎস কর</label>
+                      <input type="number" min="0" v-model="form.income_tax"  v-validate="'required'" name="income_tax" id="income_tax" placeholder="" :class="{'form-control': true, 'text-danger': errors.has('income_tax') }">
+                      <span v-show="errors.has('income_tax')" class="help text-danger">{{ errors.first('income_tax') }}</span>
+                      <span v-if="validateErrors.income_tax" class="help text-danger">{{validateErrors.income_tax[0] }}</span>
+                  </div>
+                  <div class="form-group col-md-3">
+                      <label for="vat">ভ্যাট</label>
+                      <input type="number" min="0"  v-validate="'required'" v-model="form.vat" name="vat" id="vat" placeholder="" :class="{'form-control': true, 'text-danger': errors.has('vat') }">
+                      <span v-show="errors.has('vat')" class="help text-danger">{{ errors.first('vat') }}</span>
+                      <span v-if="validateErrors.vat" class="help text-danger">{{validateErrors.vat[0] }}</span>
+                  </div>
+                  <div class="form-group col-md-3">
+                      <label for="service_charge">সার্ভিস চার্জ</label>
+                      <input type="number" min="0"  v-validate="'required'" v-model="form.service_charge" name="service_charge" id="service_charge" placeholder="" :class="{'form-control': true, 'text-danger': errors.has('service_charge') }">
+                      <span v-show="errors.has('service_charge')" class="help text-danger">{{ errors.first('service_charge') }}</span>
+                      <span v-if="validateErrors.service_charge" class="help text-danger">{{validateErrors.service_charge[0] }}</span>
                   </div>
                 </div>
                 
                 <div class="row">
-                  
-                  <div class="form-group col-md-3">
-                      <label for="others_bill_details">অন্যান্য বিলের নাম</label>
-                      <input type="text" v-model="form.others_bill_details" name="others_bill_details" id="others_bill_details" placeholder="অন্যান্য বিলের নাম" class="form-control">
+                   <div class="form-group col-md-3">
+                      <label for="correction_fee"> সংশোধন ফি </label>
+                      <input type="number" min="0" v-model="form.correction_fee" name="correction_fee" id="correction_fee" placeholder="" :class="{'form-control': true, 'text-danger': errors.has('correction_fee') }">
+                      <span v-show="errors.has('correction_fee')" class="help text-danger">{{ errors.first('correction_fee') }}</span>
+                      <span v-if="validateErrors.correction_fee" class="help text-danger">{{validateErrors.correction_fee[0] }}</span>
                   </div>
                   <div class="form-group col-md-3">
-                      <label for="others_bill">অন্যান্য বিল </label>
-                      <input type="number" min="0" v-model="form.others_bill" name="others_bill" id="others_bill" placeholder="অন্যান্য বিল" :class="{'form-control': true, 'text-danger': errors.has('others_bill') }">
+                      <label for="tin_number">টিন নাম্বার</label>
+                      <input type="text" v-model="form.tin_number" name="tin_number" id="tin_number" placeholder="টিন নাম্বার" class="form-control">
                   </div>
+                  <div class="form-group col-md-3">
+                      <label for="bin_number">বিন নাম্বার</label>
+                      <input type="text" v-model="form.bin_number" name="bin_number" id="bin_number" placeholder="বিন নাম্বার" class="form-control">
+                  </div>
+                 
                 </div>
 
                 <div class="form-group">
