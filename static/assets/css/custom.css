@@ -1,0 +1,128 @@
+body.bg-theme1 {
+    background-image: url(/static/assets/images/bg.jpg);
+}
+
+.display-none {
+    display: none;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.no-padding-right {
+    padding-right: 0;
+}
+
+.no-padding-left {
+    padding-left: 0;
+}
+
+.min-padding {
+    padding: 5px;
+}
+
+.card .table td,
+.card .table th {
+    padding: 4px;
+}
+
+.btn-group-xs>.btn,
+.btn-xs {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.form-multiple-select .vs__dropdown-toggle {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff !important;
+}
+
+.vdp-datepicker__calendar {
+    color: #000;
+    width: 100%;
+}
+
+.vdp-datepicker__calendar .cell {
+    height: 35px;
+    line-height: 35px;
+}
+
+select {
+    -moz-appearance: menulist !important;
+    -webkit-appearance: menulist !important;
+}
+
+.content-wrapper {
+    min-height: 700px;
+}
+
+.client_logo_upload {
+    width: 200px;
+    height: 100px;
+    border: 1px dashed #ddd;
+    background: #b5b5b58c;
+    text-align: center;
+    line-height: 120px;
+    cursor: pointer;
+    transition: all .5s;
+    position: relative;
+}
+
+
+.client_logo_upload:hover {
+    background: #b5b5b5;
+    border-color: #333;
+}
+
+.client_logo_upload img {
+    width: auto;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    left: 0px;
+}
+.square {
+    width: 100px;
+    height: 100px;
+}
+.upload_hover {
+    font-size: 40px;
+}
+
+.vs--single .vs__selected {
+    color: #fff !important
+}
+.bd-logo{float: left;width: 80px;}
+.union-logo{float: right;width: 80px;}
+.bill-print{background: #fff;color:#000;}
+.bill-print h5{color:#000;}
+.bill-print h6{color:#000;}
+।.topbar-nav .navbar{background-color: #02316b;}
+.search-dashboard{
+    margin-top:100px;
+}
+.search-dashboard .search-bar input{
+    height: 60px;
+    width: 100%;
+}
+.search-dashboard .search-bar a i{
+    font-size: 40px;
+}
+[type=number] {
+    width: 100%;
+}
+ @media print {
+    .no-print{display:none}
+    #printMe{background:#fff;}
+ }
+ @media only screen and (max-width: 530px) {
+    .to-profile-name{display:none;}
+ }
