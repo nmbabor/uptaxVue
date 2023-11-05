@@ -64,6 +64,25 @@
                         <router-link v-if="(data.total_amount-data.total_paid)>0" title="বিল আদায়" tag="a" :to="{ path: '/tax-collection/create?id='+data.id+'&year='+data.year}" class="btn btn-xs btn-success waves-effect waves-light m-1"><i class="fa fa-plus-circle"></i> </router-link>
                       </td>
                     </tr>
+                    <tr>
+                      <th colspan="14" class="text-center"> ট্রেড লাইসেন্স </th>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
                    
                   </tbody>
 
@@ -83,6 +102,7 @@ export default {
   data () {
     return {
         loading:false,
+        allTradelicence:[],
         allData:[],
        allHoldings: {},
         form:{
@@ -102,8 +122,6 @@ export default {
        this.loading=true;
       SearchService.search(this.form).then(response=>{
         this.allHoldings = response
-        this.allData = response.data
-        this.dataDistribute();
         this.loading=false;
       }).catch(err=>{
         this.loading=false;

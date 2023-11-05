@@ -109,6 +109,9 @@ export default {
   }
 }
 </script>
+<style>
+.input-group>.form-control{width: 1% !important}
+</style>
 <template>
     <div>
         <div class="row">

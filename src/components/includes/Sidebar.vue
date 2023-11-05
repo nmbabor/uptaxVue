@@ -71,6 +71,7 @@ export default {
         <ul class="sidebar-submenu">
           <li><router-link class="router-link" tag="a" to="/trade-licence/create"><i class="zmdi zmdi-long-arrow-right"></i> নতুন সংযোজন  </router-link></li>
           <li><router-link class="router-link" tag="a" to="/trade-licence"><i class="zmdi zmdi-long-arrow-right"></i> ট্রেড লাইসেন্স সমূহ  </router-link></li>
+          <li><router-link class="router-link" tag="a" to="/trade-licence-fee-generate"><i class="zmdi zmdi-long-arrow-right"></i> ফি জেনারেট   </router-link></li>
 
         </ul>
       </li>
@@ -81,7 +82,7 @@ export default {
         <ul class="sidebar-submenu">
           <li><router-link class="router-link" tag="a" to="/tax-collection/create"><i class="zmdi zmdi-long-arrow-right"></i> ট্যাক্স সংগ্রহ  </router-link></li>
           <li><router-link class="router-link" tag="a" to="/tax-collection"><i class="zmdi zmdi-long-arrow-right"></i> সংগৃহীত ট্যাক্স সমূহ  </router-link></li>
-          <li><router-link class="router-link" tag="a" to="/tax-generate"><i class="zmdi zmdi-long-arrow-right"></i> ট্যাক্স জেনেরাট  </router-link></li>
+          <li><router-link class="router-link" tag="a" to="/tax-generate"><i class="zmdi zmdi-long-arrow-right"></i> ট্যাক্স জেনারেট  </router-link></li>
           <li style="display:none"><router-link class="router-link" tag="a" to="/coming"><i class="zmdi zmdi-long-arrow-right"></i> ট্যাক্স রেট  </router-link></li>
 
         </ul>
