@@ -78,7 +78,7 @@
                       <th> পিতা/স্বামির নাম</th>
                       <th>মোবাইল নাম্বার</th>
                       <th> ব্যবসার ধরণ </th>
-                      <th>ট্রেডলাইসেন্স ফি</th>
+                      <th> মোট ফি </th>
                       <th class="no-print">একশন</th>
                     </tr>
 
@@ -93,7 +93,7 @@
                       <td> {{data.father_or_husband}} </td>
                       <td> {{data.mobile}} </td>
                       <td> {{data.business_type}} </td>
-                      <td> {{data.annual_tax}} </td>
+                      <td> {{parseInt(data.annual_tax)+parseInt(data.signboard_fee)+parseInt(data.income_tax)+parseInt(data.vat)+parseInt(data.service_charge)+parseInt(data.correction_fee)}} </td>
                       
                       <td class="no-print">
                          <router-link class="btn btn-xs btn-light waves-effect waves-light m-1" v-bind:to="{ name: 'editTradeLicence', params: { id: data.id } }"> <i class="fa fa-edit"></i></router-link> 

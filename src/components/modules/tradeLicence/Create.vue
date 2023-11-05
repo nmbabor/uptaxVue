@@ -29,7 +29,7 @@ export default {
         bazar_id:'',
         present_address:'',
         permanent_address:'',
-        own_rent:'',
+        own_rent:'', // is own / rent
         signboard_length:'',
         business_start_year:'',
         signboard_fee:0,
