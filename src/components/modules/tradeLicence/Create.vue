@@ -20,7 +20,7 @@ export default {
         religion:'ইসলাম',
         gender:'পুরুষ',
         nid:'',
-        annual_tax:0,
+        birth_date:'',
         tax_due:'0',
         others_bill_details:'',
         others_bill:'0',
@@ -32,7 +32,9 @@ export default {
         own_rent:'', // is own / rent
         signboard_length:'',
         business_start_year:'',
+        annual_tax:0,
         signboard_fee:0,
+        business_profession_tax:0,
         income_tax:0,
         vat:0,
         service_charge:0,
@@ -77,7 +79,17 @@ export default {
             return
           }
           else if (resp){
-
+            let day = new Date(this.form.birth_date).getDate()
+              let month = new Date(this.form.birth_date).getMonth()+1
+              if(month<10){
+                month = '0'+month
+              }
+              if(day<10){
+                day = '0'+day
+              }
+              let year = new Date(this.form.birth_date).getFullYear()
+              let date = year+'-'+month+'-'+day
+              this.form.birth_date = date
             TradeLicenceService.store(this.form).then(success=>{
 
               this.$swal({
@@ -225,6 +237,30 @@ export default {
                         <span v-if="validateErrors.nid" class="help text-danger">{{validateErrors.nid[0] }}</span>
                     </div>
                     <div class="form-group col-md-3">
+                        <label for="birth_date">জন্ম তারিখ</label>
+                        <vuejs-datepicker style="width:100%" type="date" format="dd-MM-yyyy" :input-class="{'form-control': true, 'text-danger': errors.has('birth_date') }" name="birth_date"  v-model="form.birth_date" placeholder="জন্ম তারিখ"></vuejs-datepicker>
+                        <span v-show="errors.has('birth_date')" class="help text-danger">{{ errors.first('birth_date') }}</span>
+                        <span v-if="validateErrors.birth_date" class="help text-danger">{{validateErrors.birth_date[0] }}</span>
+                    </div>
+                    
+
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-5">
+                      <label for="present_address"> বর্তমান ঠিকানা  </label>
+                      <input type="text" name="present_address" v-model="form.present_address" id="present_address" placeholder="বর্তমান ঠিকানা" class="form-control">
+                  </div>
+                  <div class="form-group col-md-4">
+                      <label for="permanent_address">স্থায়ী ঠিকানা</label>
+                      <div class="input-group">
+                        <label class="input-group-text">
+                          <input type="checkbox" v-model="isPresentSame" @click="permanentAddressSet" class="mr-2">
+                          একই
+                        </label>
+                         <input type="text" v-model="form.permanent_address" name="permanent_address" id="permanent_address" placeholder="স্থায়ী ঠিকানা"class="form-control">
+                      </div><!-- /input-group -->
+                  </div>
+                  <div class="form-group col-md-3">
                         <label for="religion">ধর্ম</label>
                         <select name="religion" v-validate="'required'" :class="{'form-control': true, 'text-danger': errors.has('religion') }" v-model="form.religion" required="">
                               <option value=''>-ধর্ম নির্বাচন করুন-</option>
@@ -237,23 +273,6 @@ export default {
                         <span v-show="errors.has('religion')" class="help text-danger">{{ errors.first('religion') }}</span>
                         <span v-if="validateErrors.religion" class="help text-danger">{{validateErrors.religion[0] }}</span>
                     </div>
-
-                </div>
-                <div class="row">
-                  <div class="form-group col-md-6">
-                      <label for="present_address"> বর্তমান ঠিকানা  </label>
-                      <input type="text" name="present_address" v-model="form.present_address" id="present_address" placeholder="বর্তমান ঠিকানা" class="form-control">
-                  </div>
-                  <div class="form-group col-md-6">
-                      <label for="permanent_address">স্থায়ী ঠিকানা</label>
-                      <div class="input-group">
-                        <label class="input-group-text">
-                          <input type="checkbox" v-model="isPresentSame" @click="permanentAddressSet" class="mr-2">
-                          একই
-                        </label>
-                         <input type="text" v-model="form.permanent_address" name="permanent_address" id="permanent_address" placeholder="স্থায়ী ঠিকানা"class="form-control">
-                      </div><!-- /input-group -->
-                  </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-3">
@@ -264,7 +283,7 @@ export default {
                         </select>
                   </div>
                   <div class="form-group col-md-3">
-                      <label for="own_rent">প্রতিষ্ঠানের মালিকানা</label>
+                      <label for="own_rent">দোকান ঘরের মালিকানা</label>
                       <select name="own_rent" v-model="form.own_rent" required="" class="form-control">
                           <option value='' selected>-সিলেক্ট মালিকানা-</option>
                           <option value="নিজস্ব">নিজস্ব</option>
@@ -285,10 +304,16 @@ export default {
                 <div class="row">
                  
                   <div class="form-group col-md-3">
-                      <label for="annual_tax">ব্যবসা ও ভিত্তির উপর কর</label>
+                      <label for="annual_tax">ট্রেড লাইসেন্স ফি</label>
                       <input type="number" min="0" v-model="form.annual_tax" name="annual_tax" id="annual_tax" placeholder="" v-validate="'required'" :class="{'form-control': true, 'text-danger': errors.has('annual_tax') }">
                       <span v-show="errors.has('annual_tax')" class="help text-danger">{{ errors.first('annual_tax') }}</span>
                       <span v-if="validateErrors.annual_tax" class="help text-danger">{{validateErrors.annual_tax[0] }}</span>
+                  </div>
+                  <div class="form-group col-md-3">
+                      <label for="business_profession_tax">ব্যবসা ও পেশা বৃত্তির উপর কর</label>
+                      <input type="number" min="0" v-model="form.business_profession_tax" name="business_profession_tax" id="business_profession_tax" placeholder="" v-validate="'required'" :class="{'form-control': true, 'text-danger': errors.has('business_profession_tax') }">
+                      <span v-show="errors.has('business_profession_tax')" class="help text-danger">{{ errors.first('business_profession_tax') }}</span>
+                      <span v-if="validateErrors.business_profession_tax" class="help text-danger">{{validateErrors.business_profession_tax[0] }}</span>
                   </div>
                   <div class="form-group col-md-3">
                       <label for="income_tax">আয় কর / উৎস কর</label>
@@ -302,15 +327,16 @@ export default {
                       <span v-show="errors.has('vat')" class="help text-danger">{{ errors.first('vat') }}</span>
                       <span v-if="validateErrors.vat" class="help text-danger">{{validateErrors.vat[0] }}</span>
                   </div>
+                  
+                </div>
+                
+                <div class="row">
                   <div class="form-group col-md-3">
                       <label for="service_charge">সার্ভিস চার্জ</label>
                       <input type="number" min="0"  v-validate="'required'" v-model="form.service_charge" name="service_charge" id="service_charge" placeholder="" :class="{'form-control': true, 'text-danger': errors.has('service_charge') }">
                       <span v-show="errors.has('service_charge')" class="help text-danger">{{ errors.first('service_charge') }}</span>
                       <span v-if="validateErrors.service_charge" class="help text-danger">{{validateErrors.service_charge[0] }}</span>
                   </div>
-                </div>
-                
-                <div class="row">
                    <div class="form-group col-md-3">
                       <label for="correction_fee"> সংশোধন ফি </label>
                       <input type="number" min="0" v-model="form.correction_fee" name="correction_fee" id="correction_fee" placeholder="" :class="{'form-control': true, 'text-danger': errors.has('correction_fee') }">
