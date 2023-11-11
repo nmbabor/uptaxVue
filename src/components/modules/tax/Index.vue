@@ -120,7 +120,7 @@
                       
                       <th width="5%"> বকেয়া <br> কর</th>
                       <th width="5%">হাল <br> কর</th>
-                      <th width="5%">পুর্বে <br> জমা</th>
+                      <th width="5%"> ডিসকাউন্ট </th>
                       <th width="5%">মোট <br> পাওনা</th>
                       <th width="5%">বর্তমান <br> জমা</th>
                       <th width="5%">বর্তমান <br> বকেয়া</th>
@@ -140,7 +140,7 @@
                       <td v-if="form.type==2"> {{data.organization_name}} </td>
                       <td> {{data.prev_due}} </td>
                       <td> {{data.tax}} </td>
-                      <td> {{data.total_amount - (parseFloat(data.paid_amount)+parseFloat(data.due_amount))+parseFloat(data.discount)}} </td>
+                      <td> {{parseFloat(data.discount)}} </td>
                       <td> {{data.total_payable}} </td>
                       <td> {{data.paid_amount}} </td>
                       <td> {{data.due_amount}} </td>
