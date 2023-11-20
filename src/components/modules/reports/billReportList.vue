@@ -130,7 +130,6 @@
                       <th v-if="form.type!=1">প্রতিষ্ঠানের নাম</th>
                       <th>পূর্বের বকেয়া</th>
                       <th>বার্ষিক কর</th>
-                      <th> ডিসকাউন্ট </th>
                       <th>মোট টাকা</th>
                       <th>জমা</th>
                       <th>বর্তমান বকেয়া</th>
@@ -149,7 +148,6 @@
                       <td v-if="form.type!=1"> {{data.organization_name}} </td>
                       <td> {{data.prev_due}} </td>
                       <td> {{data.tax}} </td>
-                      <td> {{data.discount}} </td>
                       <td> {{data.total_amount}} </td>
                       <td> {{data.total_paid}} </td>
                       <td> {{data.total_amount-data.total_paid}} </td>
@@ -160,7 +158,6 @@
                       <th v-if="form.type!=1"></th>
                       <th>{{this.footer.tax_due}}</th>
                       <th>{{this.footer.annual_tax}}</th>
-                      <th>{{this.footer.discount}}</th>
                       <th>{{this.footer.total_amount}}</th>
                       <th>{{this.footer.total_paid}}</th>
                       <th>{{this.footer.total_amount-this.footer.total_paid}}</th>
