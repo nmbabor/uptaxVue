@@ -17,7 +17,7 @@ const baseRoutes = [
     { path: '/tax-collection', name: 'taxCollection', meta: { parent: 'Tax Collection' }, component: require('@/components/modules/tax/Index').default },
     { path: '/tax-collection/:id', name: 'taxCollectionView', meta: { parent: 'Tax Collection' }, component: require('@/components/modules/tax/View').default },
 
-    { path: '/report/holdings', name: 'holdingSearch', meta: { parent: 'Holdings Search' }, component: require('@/components/modules/reports/holdingSearch').default },
+    { path: '/report/holding-registers', name: 'holdingSearch', meta: { parent: 'Holdings Search' }, component: require('@/components/modules/reports/holdingRegisters').default },
     { path: '/report/due-tax', name: 'dueTax', meta: { parent: 'Due Tax' }, component: require('@/components/modules/reports/dueTax').default },
     { path: '/bill-report-list', name: 'billReportList', meta: { parent: 'Bill Reports List' }, component: require('@/components/modules/reports/billReportList').default },
     { path: '/bill-report', name: 'billReports', meta: { parent: 'Bill Reports' }, component: require('@/components/modules/reports/billReports').default },
@@ -42,6 +42,8 @@ const baseRoutes = [
     { path: '/trade-licence-fee-generate', name: 'feeGenerateTradeLicence', meta: { parent: 'TradeLicence' }, component: require('@/components/modules/tradeLicence/Generate').default },
     { path: '/trade-licence', name: 'tradeLicence', meta: { parent: 'TradeLicence' }, component: require('@/components/modules/tradeLicence/allLicence').default },
     { path: '/trade-licence/:id/edit', name: 'editTradeLicence', meta: { parent: 'TradeLicence' }, component: require('@/components/modules/tradeLicence/Edit').default },
+    //Trade licence Reports
+    { path: '/tl-report/register', name: 'TradeLicenceRegister', meta: { parent: 'TradeLicence' }, component: require('@/components/modules/tradeLicence/reports/registers').default },
 ]
 const routes = baseRoutes
 const router = new Router({

@@ -53,10 +53,10 @@ export default {
 	   </div>
       </div>
    <ul class="sidebar-menu do-nicescrol">
-      <li class="sidebar-header">মেইন মেনু</li>
+      <li class="sidebar-header">হোল্ডিং মেনু</li>
       <li>
         <a href="javaScript:void();" class="waves-effect">
-          <i class="zmdi zmdi-view-dashboard"></i> <span>হোল্ডিং</span><i class="fa fa-angle-left pull-right"></i>
+          <i class="fa fa-id-card-o"></i> <span>হোল্ডিং</span><i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="sidebar-submenu">
           <li><router-link class="router-link" tag="a" to="/holdings/create"><i class="zmdi zmdi-long-arrow-right"></i> নতুন সংযোজন  </router-link></li>
@@ -64,20 +64,10 @@ export default {
 
         </ul>
       </li>
+      
       <li>
         <a href="javaScript:void();" class="waves-effect">
-          <i class="zmdi zmdi-view-dashboard"></i> <span>ট্রেড লাইসেন্স</span><i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="sidebar-submenu">
-          <li><router-link class="router-link" tag="a" to="/trade-licence/create"><i class="zmdi zmdi-long-arrow-right"></i> নতুন সংযোজন  </router-link></li>
-          <li><router-link class="router-link" tag="a" to="/trade-licence"><i class="zmdi zmdi-long-arrow-right"></i> ট্রেড লাইসেন্স সমূহ  </router-link></li>
-          <li><router-link class="router-link" tag="a" to="/trade-licence-fee-generate"><i class="zmdi zmdi-long-arrow-right"></i> ফি জেনারেট   </router-link></li>
-
-        </ul>
-      </li>
-      <li>
-        <a href="javaScript:void();" class="waves-effect">
-          <i class="zmdi zmdi-view-dashboard"></i> <span>ট্যাক্স</span><i class="fa fa-angle-left pull-right"></i>
+          <i class="fa fa-credit-card"></i> <span>ট্যাক্স</span><i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="sidebar-submenu">
           <li><router-link class="router-link" tag="a" to="/tax-collection/create"><i class="zmdi zmdi-long-arrow-right"></i> ট্যাক্স সংগ্রহ  </router-link></li>
@@ -89,10 +79,10 @@ export default {
       </li>
       <li>
         <a href="javaScript:void();" class="waves-effect">
-          <i class="zmdi zmdi-view-dashboard"></i> <span>রিপোর্টস</span><i class="fa fa-angle-left pull-right"></i>
+          <i class="fa fa-book"></i> <span>রিপোর্টস</span><i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="sidebar-submenu">
-          <li><router-link class="router-link" tag="a" to="/report/holdings"><i class="zmdi zmdi-long-arrow-right"></i> ধার্য্য রেজিষ্ট্রার  </router-link></li>
+          <li><router-link class="router-link" tag="a" to="/report/holding-registers"><i class="zmdi zmdi-long-arrow-right"></i> ধার্য্য রেজিষ্ট্রার  </router-link></li>
           <li><router-link class="router-link" tag="a" to="/bill-report-list"><i class="zmdi zmdi-long-arrow-right"></i> বিল প্রতিবেদন  </router-link></li>
           <li><router-link class="router-link" tag="a" to="/report/due-tax"><i class="zmdi zmdi-long-arrow-right"></i> বকেয়া প্রতিবেদন  </router-link></li>
           <li><router-link class="router-link" tag="a" to="/bill-report"><i class="zmdi zmdi-long-arrow-right"></i> সিঙ্গেল বিল </router-link></li>
@@ -132,9 +122,34 @@ export default {
         
         </ul>
       </li>
+      <li class="sidebar-header">ট্রেড লাইসেন্স মেনু</li>
       <li>
         <a href="javaScript:void();" class="waves-effect">
-          <i class="zmdi zmdi-view-dashboard"></i> <span> সেটিংস </span><i class="fa fa-angle-left pull-right"></i>
+          <i class="fa fa-check-square-o"></i> <span>ট্রেড লাইসেন্স</span><i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="sidebar-submenu">
+          <li><router-link class="router-link" tag="a" to="/trade-licence/create"><i class="zmdi zmdi-long-arrow-right"></i> নতুন সংযোজন  </router-link></li>
+          <li><router-link class="router-link" tag="a" to="/trade-licence"><i class="zmdi zmdi-long-arrow-right"></i> ট্রেড লাইসেন্স সমূহ  </router-link></li>
+          <li><router-link class="router-link" tag="a" to="/trade-licence-fee-generate"><i class="zmdi zmdi-long-arrow-right"></i> ফি জেনারেট   </router-link></li>
+
+        </ul>
+      </li>
+      <li>
+        <a href="javaScript:void();" class="waves-effect">
+          <i class="fa fa-file-text-o"></i> <span>রিপোর্টস</span><i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="sidebar-submenu">
+          <li><router-link class="router-link" tag="a" to="/tl-report/register"><i class="zmdi zmdi-long-arrow-right"></i> ধার্য্য রেজিষ্ট্রার  </router-link></li>
+          <li><router-link class="router-link" tag="a" to="/tl-report/bill"><i class="zmdi zmdi-long-arrow-right"></i> বিল প্রতিবেদন  </router-link></li>
+          <li><router-link class="router-link" tag="a" to="/tl-report/due-tax"><i class="zmdi zmdi-long-arrow-right"></i> বকেয়া প্রতিবেদন  </router-link></li>
+          <li><router-link class="router-link" tag="a" to="/tl-report/single"><i class="zmdi zmdi-long-arrow-right"></i> সিঙ্গেল বিল </router-link></li>
+          <li><router-link class="router-link" tag="a" to="/tl-report/union-top-sheet"><i class="zmdi zmdi-long-arrow-right"></i> ইউনিয়ন টপশিট  </router-link></li>
+        </ul>
+      </li>
+       <li class="sidebar-header">সাধারণ মেনু</li>
+      <li>
+        <a href="javaScript:void();" class="waves-effect">
+          <i class="zmdi zmdi-settings"></i> <span> সেটিংস </span><i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="sidebar-submenu">
           <li><router-link class="router-link" tag="a" to="/union-bill-details"><i class="zmdi zmdi-long-arrow-right"></i> ইউনিয়ন তথ্য </router-link></li>
