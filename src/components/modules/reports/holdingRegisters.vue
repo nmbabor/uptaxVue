@@ -207,7 +207,6 @@
 </template>
 <script>
 import ReportsService from '@/services/ReportsService'
-import HoldingsService from '@/services/HoldingsService'
 import AreaService from '@/services/AreaService'
 import TaxCollectionService from '@/services/TaxCollectionService'
 export default {
@@ -309,23 +308,6 @@ export default {
        }
       this.holdings()
     },
-    async deleteData (id) {
-      const $this = this
-      $this.$swal({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.value) {
-          HoldingsService.delete(id)
-          $this.getData()
-        }
-      })
-    }
   }
 }
 </script>

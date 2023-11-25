@@ -5,13 +5,13 @@ export default {
         return Api().get('tl-report/registers', { params: form })
     },
 
+    singleLicence(form) {
+        return Api().get('tl-report/single-licence', { params: form })
+    },
 
     
     allHoldings(form) {
         return Api().get('report/all-holdings', { params: form })
-    },
-    singleHolding(form) {
-        return Api().get('report/single-holding', { params: form })
     },
     dueTax(form) {
         return Api().get('report/due-tax', { params: form })

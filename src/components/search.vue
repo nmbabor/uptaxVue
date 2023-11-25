@@ -164,14 +164,14 @@
                       পূর্বের <br />
                       বকেয়া
                     </th>
-                    <th>মোট ফি</th>
+                    <th>বার্ষিক কর সহ ফী </th>
+                    <th>মোট কর সহ ফী</th>
                     <th>জমা</th>
                     <th>
                       বর্তমান <br />
                       বকেয়া
                     </th>
                     <th class="no-print">একশন</th>
-                    <th class="no-print">বিস্তারিত</th>
                     <th class="no-print">
                       ট্যাক্স <br />
                       সংগ্রহ
@@ -190,22 +190,24 @@
                     <td>{{ tlData.bazar_name }}</td>
                     <td>{{ tlData.business_type }}</td>
                     <td>{{ tlData.prev_due }}</td>
+                    <td>{{ tlData.total_amount - tlData.prev_due }}</td>
                     <td>{{ tlData.total_amount }}</td>
                     <td>{{ tlData.total_paid }}</td>
                     <td>{{ tlData.total_amount - tlData.total_paid }}</td>
                     <td class="no-print">
-                      <router-link
-                        v-if="tlData.total_amount - tlData.total_paid > 0"
-                        title="ডিসকাউন্ট"
-                        class="btn btn-xs btn-info waves-effect waves-light m-1"
-                        v-bind:to="{
-                          name: 'editHolding',
-                          params: { id: tlData.trade_licence_id },
-                          query: { discount: 1 }
+                    <router-link
+                        title="বিস্তারিত প্রতিবেদন"
+                        tag="a"
+                        :to="{
+                          path:
+                            '/trade-licence-print?id=' +
+                            tlData.trade_licence_id +
+                            '&year=' +
+                            tlData.year
                         }"
-                      >
-                        <i class="fa fa-tag"></i
-                      ></router-link>
+                        class="btn btn-xs btn-info waves-effect waves-light m-1"
+                        ><i class="fa fa-file"></i>
+                      </router-link>
                       <router-link
                         class="btn btn-xs btn-warning waves-effect waves-light m-1"
                         v-bind:to="{
@@ -217,55 +219,12 @@
                       ></router-link>
                       <button
                         class="btn btn-xs btn-danger waves-effect waves-light m-1"
-                        @click="deleteData(tlData.trade_licence_id)"
+                        @click="deleteTlData(tlData.trade_licence_id)"
                       >
                         <i class="fa fa-trash"></i>
                       </button>
                     </td>
-                    <td class="no-print">
-                      <router-link
-                        title="ব্যক্তিগত প্রতিবেদন"
-                        tag="a"
-                        :to="{
-                          path:
-                            '/personal-details?id=' +
-                            tlData.trade_licence_id +
-                            '&year=' +
-                            tlData.year
-                        }"
-                        class="btn btn-xs btn-info waves-effect waves-light m-1"
-                        ><i class="fa fa-user"></i>
-                      </router-link>
-                      <router-link
-                        title="বিল প্রতিবেদন"
-                        tag="a"
-                        :to="{
-                          path:
-                            '/bill-report?id=' +
-                            tlData.trade_licence_id +
-                            '&year=' +
-                            tlData.year
-                        }"
-                        class="btn btn-xs btn-primary waves-effect waves-light m-1"
-                        ><i class="fa fa-print"></i>
-                      </router-link>
-                    </td>
-                    <td class="no-print">
-                      <router-link
-                        v-if="tlData.total_amount - tlData.total_paid > 0"
-                        title="বিল আদায়"
-                        tag="a"
-                        :to="{
-                          path:
-                            '/tax-collection/create?id=' +
-                            tlData.id +
-                            '&year=' +
-                            tlData.year
-                        }"
-                        class="btn btn-xs btn-success waves-effect waves-light m-1"
-                        ><i class="fa fa-plus-circle"></i>
-                      </router-link>
-                    </td>
+                    <td class="no-print"></td>
                   </tr>
                 </tbody>
               </table>
@@ -279,6 +238,7 @@
 <script>
 import SearchService from "@/services/SearchService";
 import HoldingsService from "@/services/HoldingsService";
+import TradeLicenceService from '@/services/TradeLicenceService'
 export default {
   name: "Search",
   data() {
@@ -317,7 +277,6 @@ export default {
       SearchService.searchTradeLicence(this.form)
         .then(response => {
           this.allTradelicence = response.data;
-          console.log(response.data);
           this.loading = false;
         })
         .catch(err => {
@@ -358,6 +317,38 @@ export default {
               });
           }
         });
+    },
+     async deleteTlData(id) {
+      const $this = this
+      $this.$swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+           TradeLicenceService.delete(id).then(response=>{
+            $this.$swal({
+                type: 'success',
+                title: 'Deleted Successfully Done',
+                showConfirmButton: false,
+                timer: 1500
+              })
+            $this.getData()
+            
+          }).catch(err=>{
+           
+            $this.$swal({
+                  type: 'error',
+                  title: err.response.data,
+                  showConfirmButton: true
+                })
+          })
+        }
+      })
     }
   }
 };

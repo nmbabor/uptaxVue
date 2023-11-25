@@ -140,10 +140,10 @@ export default {
         </a>
         <ul class="sidebar-submenu">
           <li><router-link class="router-link" tag="a" to="/tl-report/register"><i class="zmdi zmdi-long-arrow-right"></i> ধার্য্য রেজিষ্ট্রার  </router-link></li>
-          <li><router-link class="router-link" tag="a" to="/tl-report/bill"><i class="zmdi zmdi-long-arrow-right"></i> বিল প্রতিবেদন  </router-link></li>
+          <!-- <li><router-link class="router-link" tag="a" to="/tl-report/bill"><i class="zmdi zmdi-long-arrow-right"></i> বিল প্রতিবেদন  </router-link></li>
           <li><router-link class="router-link" tag="a" to="/tl-report/due-tax"><i class="zmdi zmdi-long-arrow-right"></i> বকেয়া প্রতিবেদন  </router-link></li>
           <li><router-link class="router-link" tag="a" to="/tl-report/single"><i class="zmdi zmdi-long-arrow-right"></i> সিঙ্গেল বিল </router-link></li>
-          <li><router-link class="router-link" tag="a" to="/tl-report/union-top-sheet"><i class="zmdi zmdi-long-arrow-right"></i> ইউনিয়ন টপশিট  </router-link></li>
+          <li><router-link class="router-link" tag="a" to="/tl-report/union-top-sheet"><i class="zmdi zmdi-long-arrow-right"></i> ইউনিয়ন টপশিট  </router-link></li> -->
         </ul>
       </li>
        <li class="sidebar-header">সাধারণ মেনু</li>
