@@ -96,6 +96,7 @@
                     <th>বার্ষিক কর সহ ফী </th>
                     <th>মোট কর সহ ফী</th>
                     <th>জমা</th>
+                    <th>প্রিন্ট</th>
                     </tr>
 
                   </thead>
@@ -113,6 +114,21 @@
                     <td>{{ data.total_amount - data.prev_due }}</td>
                     <td>{{ data.total_amount }}</td>
                     <td>{{ data.total_paid }}</td>
+                    <td class="no-print">
+                    <router-link
+                        title="বিস্তারিত প্রতিবেদন"
+                        tag="a"
+                        :to="{
+                          path:
+                            '/trade-licence-print?id=' +
+                            data.trade_licence_id +
+                            '&year=' +
+                            data.year
+                        }"
+                        class="btn btn-xs btn-info waves-effect waves-light m-1"
+                        ><i class="fa fa-file"></i>
+                      </router-link>
+                      </td>
                     </tr>
                     
                   </tbody>
