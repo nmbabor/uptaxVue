@@ -31,13 +31,13 @@
                 alt="Loading.."
               />
             </div>
-            <div class="rows">
-              <div id="printMe" class="raw bill-print" style="width: 210mm; margin: 0 auto;">
+            <div class="rows" style="background: #fff; padding: 30px; 0">
+              <div id="printMe" class="raw bill-print" style="width: 210mm; margin: 50px auto; ">
                 <div
                   class="row"
                   v-for="licence in licencesData"
                   :key="licence.id"
-                  style="padding:5px;overflow:hidden;"
+                  style="padding:5px;overflow:hidden;;"
                 >
                   <div class="col-md-12" style="width:100%;">
                     <div
@@ -332,11 +332,18 @@ export default {
   opacity: 0.15;
   width: 300px;
 }
+.bill-print {
+    border: 1px solid #000;
+  }
 @media print {
   @page {
     size: auto;
-    margin: 0;
+    margin: 0 0 0 0;
     background: #fff !important;
+   
+  }
+  .bill-print {
+    margin-top: 50px;
   }
   .v-datatable__actions {
     display: none;
@@ -369,6 +376,7 @@ export default {
   /* table thead th:last-child{display: none;}
     table td:last-child{display: none;} */
 }
+
 .bill-details .card .table td,
 .bill-details .card .table th {
   padding: 3px 10px;
