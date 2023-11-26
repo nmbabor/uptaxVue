@@ -17,6 +17,7 @@
     "vue": "^2.5.2",
     "vue-jwt-decode": "^0.1.0",
     "vue-print-nb": "^1.5.0",
+    "vue-qrcode-component": "^2.1.1",
     "vue-router": "^3.0.1",
     "vue-script2": "^2.1.0",
     "vue-select": "^3.10.8",

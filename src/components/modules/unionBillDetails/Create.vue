@@ -9,6 +9,7 @@ export default {
         village: [],
       form: {
         union_id:this.$union_id,
+        secretary_name:'',
         chairman_name:'',
         chairman_mobile:'',
         email:'',
@@ -190,13 +191,23 @@ export default {
                       </div>
                     
                         <div class="row">
-                          <div class="form-group col-md-3">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="col-md-12 no-padding"> সচিবের নাম  </label>
+                                <div class="col-md-12 no-padding">
+                                  <input type="text" name="secretary_name" v-model="form.secretary_name" v-validate="'required'" :class="{'form-control': true, 'text-danger': errors.has('secretary_name') }">
+                                  <span v-show="errors.has('secretary_name')" class="help text-danger">{{ errors.first('secretary_name') }}</span>
+                                  <span v-if="validateErrors.secretary_name" class="help text-danger">{{validateErrors.secretary_name[0] }}</span>
+                                </div>
+                            </div>
+                        </div>
+                          <div class="form-group col-md-4">
                               <label for="input-2"> বিল শুরু তারিখ </label>
                               <vuejs-datepicker type="date" format="dd-MM-yyyy" :input-class="{'form-control': true, 'text-danger': errors.has('bill_start_date') }" v-validate="'required'" name="bill_start_date"  v-model="form.bill_start_date" placeholder=" বিল শুরু তারিখ"></vuejs-datepicker>
                               <span v-show="errors.has('bill_start_date')" class="help text-danger">{{ errors.first('bill_start_date') }}</span>
                               <span v-if="validateErrors.bill_start_date" class="help text-danger">{{validateErrors.bill_start_date[0] }}</span>
                           </div>
-                          <div class="form-group col-md-3">
+                          <div class="form-group col-md-4">
                                 <label for="input-2"> বিল শেষ তারিখ </label>
                                 <vuejs-datepicker type="date" format="dd-MM-yyyy" :input-class="{'form-control': true, 'text-danger': errors.has('bill_end_date') }" v-validate="'required'" name="bill_end_date"  v-model="form.bill_end_date" placeholder="বিল শেষ তারিখ"></vuejs-datepicker>
                                 <span v-show="errors.has('bill_end_date')" class="help text-danger">{{ errors.first('bill_end_date') }}</span>

@@ -9,7 +9,7 @@
               <button class="btn btn-xs btn-primary " v-print="'#printMe'"><i class="fa fa-print"></i> Print</button>
               <router-link tag="a" to="/trade-licence/create" class="btn btn-xs btn-light waves-effect waves-light m-1"><i class="fa fa-plus-circle"></i> নতুন সংযোজন </router-link>
             </div>
-            <h4 class="card-title"> {{credentials['union']}} ইউনিয়ন পরিষদ ধার্য কর রেজিষ্টার প্রতিবেদন</h4>
+            <h4 class="card-title"> {{credentials['union']}} ইউনিয়ন পরিষদ ট্রেড লাইসেন্স ধার্য কর রেজিস্টার</h4>
           </div>
           <div class="card-body">
             <div class="row">
@@ -88,9 +88,14 @@
                       <th> প্রোপাইটরের নাম</th>
                       <th> পিতা/স্বামির নাম</th>
                       <th>মোবাইল নাম্বার</th>
-                      <th> ব্যবসার ধরণ </th>
-                      <th> মোট ফি </th>
-                      <th> জমা </th>
+                      <th>ব্যবসার ধরণ</th>
+                    <th>
+                      পূর্বের <br />
+                      বকেয়া
+                    </th>
+                    <th>বার্ষিক কর সহ ফী </th>
+                    <th>মোট কর সহ ফী</th>
+                    <th>জমা</th>
                     </tr>
 
                   </thead>
@@ -104,8 +109,10 @@
                       <td> {{data.father_or_husband}} </td>
                       <td> {{data.mobile}} </td>
                       <td> {{data.business_type}} </td>
-                      <td> {{data.total_amount}} </td>
-                      <td> {{data.total_paid}} </td>
+                      <td>{{ data.prev_due }}</td>
+                    <td>{{ data.total_amount - data.prev_due }}</td>
+                    <td>{{ data.total_amount }}</td>
+                    <td>{{ data.total_paid }}</td>
                     </tr>
                     
                   </tbody>
