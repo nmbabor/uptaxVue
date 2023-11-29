@@ -119,6 +119,14 @@ select {
 [type=number] {
     width: 100%;
 }
+@font-face {
+    font-family: 'SiyamRupali';
+    src: url('../fonts/Siyamrupali.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'SolaimanLipi';
+    src: url('../fonts/SolaimanLipi.ttf') format('truetype');
+}
  @media print {
     .no-print{display:none}
     #printMe{background:#fff;}

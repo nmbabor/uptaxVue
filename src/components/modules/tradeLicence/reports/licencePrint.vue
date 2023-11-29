@@ -32,23 +32,27 @@
               />
             </div>
             <div class="rows" style="background: #fff; padding: 30px; 0">
-              <div id="printMe" class="raw bill-print" style="width: 210mm; margin: 50px auto; ">
+              <div
+                id="printMe"
+                class="raw bill-print"
+                style="background: #fff; "
+              >
                 <div
                   class="row"
                   v-for="licence in licencesData"
                   :key="licence.id"
-                  style="padding:5px;overflow:hidden;;"
+                  style="padding:5px;overflow:hidden;height: 100%;"
                 >
                   <div class="col-md-12" style="width:100%;">
                     <div
                       class="row"
                       style="text-align:center;padding:10px 0;width:100%;margin:0"
                     >
-                     <div class="col-md-12">
-                        <h4>{{ area.union_name }} ইউনিয়ন পরিষদ</h4>
-                        <h5>
-                          {{ area.upazila_name }} , {{ area.district_name }}
-                        </h5>
+                      <div class="col-md-12">
+                        <h5>{{ area.union_name }} ইউনিয়ন পরিষদ</h5>
+                        <h6 style="color: red;">
+                          {{ area.upazila_name }},{{ area.district_name }}
+                        </h6>
                       </div>
                     </div>
                     <div
@@ -56,12 +60,27 @@
                       style="text-align:center;padding:10px 0;width:100%;margin:0"
                     >
                       <div class="col-md-4" style="width:17%;float:left;">
-                         <vue-qrcode :text="qrCodeData+`?id=${licence.trade_licence_id}&year=${licence.year}`" :size="100"></vue-qrcode>
-                         <div style="text-align:left">
-                          <p style="margin-top: 10px; margin-bottom: 5px;"> <u> লাইসেন্স ইস্যুর বিবরণ </u> </p>
-                          <p style="margin-bottom: 2px;"> ইস্যুর তারিখঃ <b> {{en2bn(licence.create_date)}} </b> </p>
-                          <p> ইস্যুর সময় <b> {{en2bn(licence.create_time)}} </b> </p>
-                         </div>
+                        <vue-qrcode
+                          :text="
+                            qrCodeData +
+                              `?id=${licence.trade_licence_id}&year=${licence.year}`
+                          "
+                          :size="100"
+                        ></vue-qrcode>
+                        <div style="text-align:left">
+                          <p
+                            style="margin-top: 25px; margin-bottom: 5px; border-bottom:2px solid #ccc; padding: 5px; text-align: center;"
+                          >
+                            লাইসেন্স ইস্যুর বিবরণ
+                          </p>
+                          <p style="margin-bottom: 2px;">
+                            ইস্যুর তারিখঃ
+                            <span> {{ en2bn(currentDate) }} </span>
+                          </p>
+                          <p>
+                            ইস্যুর সময় <span> {{ en2bn(currentTime) }} </span>
+                          </p>
+                        </div>
                       </div>
                       <div class="col-md-4" style="width:66%;float:left;">
                         <img
@@ -69,130 +88,316 @@
                           alt="Bangladesh"
                           style="margin: 0 auto; width: 80px;"
                         />
-                        <h6 style="color: red; margin-top:5px;"> ট্রেড লাইসেন্স </h6>
-                        <p><b> ট্রেড লাইসেন্স নং : {{licence.trade_licence_no}} </b> </p>
+                        <h6 style="color: red; margin-top:5px;">
+                          ই-ট্রেড লাইসেন্স
+                        </h6>
+                        <p>
+                          লাইসেন্স নং :
+                          <b> 2023050100003{{ licence.trade_licence_no }} </b>
+                        </p>
                       </div>
                       <div class="col-md-4" style="width:17%;float:right;">
-                        <div style="width: 120px; height: 130px; border: 1px solid #ddd; float: right">
-                        <small> ছবি সংযুক্তি </small>
+                        <div
+                          style="width: 120px; height: 130px; border: 1px solid #ddd; float: right"
+                        >
+                          <small> ছবি সংযুক্তি </small>
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-12">
-                      <p> স্থানীয় সরকার (ইউনিয়ন পরিষদ) আইন, ২০০৯ (২০০৯ সনের ৬১ নং আইন) এর ধারা ৬৬ তে প্রদত্ত ক্ষমতাবলে সরকার  প্রণীত আদর্শ কর তফসিল,
-                       ২০১৩ এর ৬ ও ১৭ নং অনুচ্ছেদ অনুযায়ী ব্যবসা, বৃত্তি, পেশা বা শিল্প প্রতিষ্ঠানের উপর আরোপিত কর আদায়ের লক্ষ্যে নির্ধারিত শর্তে নিন্মবর্ণিত ব্যক্তি/প্রতিষ্ঠানের অনুকূলে এই ট্রেড লাইসেন্সটি ইস্যু করা হলঃ     </p>
+                    <div
+                      class="col-md-12"
+                      style="border: 2px solid #ccc;padding: 10px;margin-bottom: 15px;"
+                    >
+                      <p
+                        style="margin-bottom:0; color: green; text-align: justify;"
+                      >
+                        স্থানীয় সরকার (ইউনিয়ন পরিষদ) আইন, ২০০৯ (২০০৯ সনের ৬১ নং
+                        আইন) এর ধারা ৬৬ তে প্রদত্ত ক্ষমতাবলে সরকার প্রণীত আদর্শ
+                        কর তফসিল, ২০১৩ এর ৬ ও ১৭ নং অনুচ্ছেদ অনুযায়ী ব্যবসা,
+                        বৃত্তি, পেশা বা শিল্প প্রতিষ্ঠানের উপর আরোপিত কর আদায়ের
+                        লক্ষ্যে নির্ধারিত শর্তে নিম্নবর্ণিত ব্যক্তি/প্রতিষ্ঠানের
+                        অনুকূলে এই ট্রেড লাইসেন্সটি ইস্যু করা হলঃ
+                      </p>
                     </div>
                     <div class="col-md-12 main-table">
-                      
-                      <table
-                        class="table bill-table"
-                      >
-                        <tr>
-                          <td colspan="2">১। ব্যবসা প্রতিষ্ঠানের নাম : <b> {{ licence.organization_name }} </b> </td>
-                        </tr>
-                        <tr>
-                          <td colspan="2">২। স্বত্ত্বাধীকারী/লাইসেন্সধারীর নাম : <b> {{ licence.owner_name }} </b> </td>
-                        </tr>
-                        
-                        <tr>
-                           <td colspan="2"> ৩। মাতার নাম : <b> {{ licence.mother }} </b> </td>
-                        </tr>
-                        
-                      
-                        <tr>
-                          <td colspan="2"> ৪।  পিতা/স্বামির নাম : <b> {{ licence.father_or_husband }} </b> </td>
-                        </tr>
-                         <tr>
-                          <td colspan="2"> ৫। ব্যবসার ধরণ : <b> {{ licence.business_type }} </b> </td>
-                        </tr>
-                        <tr>
-                          <td colspan="2"> ৬। ব্যবসার প্রতিষ্ঠানের ঠিকানা : <b> {{ licence.present_address }} </b> </td>
-                        </tr>
-                        <tr>
-                          <td colspan="2"> ৭। ওয়ার্ড নং : <b> {{ en2bn(licence.word) }} </b> </td>
-                        </tr>
-                        <tr>
-                          <td colspan="2"> ৮।  (ক) জাতীয় পরিচয়পত্র / জন্ম নিবন্ধন নম্বর : <b> {{ licence.nid}} </b> </br> 
-                          <span style="margin-left: 26px"> (খ) মোবাইল নাম্বার : <b> {{ licence.mobile}} </b> </span>
-                           </td>
-                        </tr>
-                         <tr>
-                          <td> <span style="margin-left: 26px"> (গ) টিআইএন : <b> {{ licence.tin_number}} </b> </span> </td>
-                          <td>
-                           (ঘ) বিআইএন : <b> {{ licence.bin_number}} </b>
-                           </td>
-                        </tr>
-                        <tr>
-                          <td> ৯। (ক) অর্থ বছর : <b> {{ en2bn(licence.year_name) }} </b> </td>
-                          <td> (খ) ব্যবসার শুরুর অর্থ বছর : <b> {{ en2bn(licence.start_year_name) }} </b> </td>
-                        </tr>
-                        <tr>
-                          <td colspan="2"> ১০। বাজারের নাম : <b> {{ licence.bazar_name }} </b> </td>
-                        </tr>
-                        <tr>
-                          <td> ১১। (ক) বর্তমান ঠিকানা : <b> {{ licence.present_address }} </b> </td>
-                          <td> (খ) স্থায়ী ঠিকানা : <b> {{ licence.permanent_address }} </b> </td>
-                        </tr>
-                       <tr>
-                          <td colspan="2"> ১২। <b> করের বিবরণ </b> </br> 
-                            
-                          </td>
-                      </tr>
-                      <tr>
-                          <td><span style="margin-left: 26px"> (ক) ট্রেড লাইসেন্স ফি : <b> {{ en2bn(licence.annual_tax) }} টাকা </b> </span> </td>
-                          <td> (খ) সাইনবোর্ড ফি : <b> {{ en2bn(licence.signboard_fee) }} টাকা </b> </td>
-                      </tr>
-                      <tr>
-                          <td><span style="margin-left: 26px"> (গ) ব্যবসা ও পেশা বৃত্তির উপর কর : <b> {{ en2bn(licence.business_profession_tax) }} টাকা </b> </span> </td>
-                          <td> (ঘ) আয় কর / উৎস কর : <b> {{ en2bn(licence.income_tax) }} টাকা </b> </td>
-                      </tr>
-                      <tr>
-                          <td><span style="margin-left: 26px"> (ঙ) ভ্যাট : <b> {{ en2bn(licence.vat) }} টাকা </b> </span> </td>
-                          <td> (চ) সার্ভিস চার্জ : <b> {{ en2bn(licence.service_charge) }} টাকা </b> </td>
-                      </tr>
-                      <tr style="border-bottom: 2px solid #333">
-                          <td><span style="margin-left: 26px"> (ছ) সংশোধন ফি : <b> {{ en2bn(licence.correction_fee) }} টাকা </b> </span> </td>
-                          <td> (জ)  পুর্বের বকেয়া : <b> {{ en2bn(licence.prev_due) }} টাকা </b> </td>
-                      </tr>
+                      <table class="table print-table" style="background: url('@/assets/images/bd-bg.png') no-repeat center; background-size:50%" >
+                        <tbody>
+                          <tr>
+                            <td>১। ব্যবসা প্রতিষ্ঠানের নাম</td>
+                            <td>:</td>
+                            <td colspan="4">
+                              <span> {{ licence.organization_name }} </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>২। ব্যবসা প্রতিষ্ঠানের মালিকের নাম</td>
+                            <td>:</td>
+                            <td colspan="4">
+                              <span> {{ licence.owner_name }} </span>
+                            </td>
+                          </tr>
 
+                          <tr>
+                            <td>৩। মাতার নাম</td>
+                            <td>:</td>
+                            <td colspan="4">
+                              <span> {{ licence.mother }} </span>
+                            </td>
+                          </tr>
 
-                        <tr>
-                          <th style="color: red">
-                            অত্র ট্রেড লাইসেন্স এর মেয়াদ : ৩০-০৬-{{getLastYear(licence.year_name)}} পর্যন্ত
-                          </th>
-                          <th>
-                             সর্বমোট :
-                            <b>{{ en2bn(licence.total_amount) }} টাকা মাত্র</b>
-                          </th>
-                        </tr>
+                          <tr>
+                            <td>৪। পিতা/স্বামীর নাম</td>
+                            <td>:</td>
+                            <td colspan="4">
+                              <span> {{ licence.father_or_husband }} </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>৫। ব্যবসার ধরণ</td>
+                            <td>:</td>
+                            <td colspan="4" style="white-space: normal;">
+                              <span> {{ licence.business_type }} </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>৬। ব্যবসার প্রতিষ্ঠানের ঠিকানা</td>
+                            <td>:</td>
+                            <td colspan="4" style="white-space: normal;">
+                              <span> {{ licence.present_address }} </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>৭। ওয়ার্ড নং</td>
+                            <td>:</td>
+                            <td colspan="4">
+                              <span> {{ en2bn(licence.word) }} </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="6">&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              ৮। (ক) এন আইডি / জন্ম নিবন্ধন নম্বর
+                            </td>
+                            <td>:</td>
+                            <td>
+                              <span> {{ licence.nid }} </span>
+                            </td>
+                            <td>
+                              <span>
+                                (খ) মোবাইল নাম্বার
+                              </span>
+                            </td>
+                            <td>:</td>
+                            <td>
+                              <span> {{ licence.mobile }} </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <span style="margin-left: 25px;">
+                                (গ) টিআইএন
+                              </span>
+                            </td>
+                            <td>:</td>
+                            <td>
+                              <span> {{ licence.tin_number }} </span>
+                            </td>
 
-                        <tr>
-                          <td>
-                            <p style="margin-top:80px; text-align: center">
-                             <b> {{union_details.secretary_name}} </b> </br>
-                              সচিব </br>
-                             {{ area.union_name }} ইউনিয়ন পরিষদ </br>
-                              {{ area.upazila_name }} , {{ area.district_name }}
-                            </p>
-                          </td>
-                           <td>
-                            <p style="margin-top:80px; text-align: center">
-                               <b> {{union_details.chairman_name}} </b> </br>
-                              চেয়ারম্যান </br>
-                             {{ area.union_name }} ইউনিয়ন পরিষদ </br>
-                              {{ area.upazila_name }} , {{ area.district_name }}
-                            </p>
-                          </td>
-                        </tr>
+                            <td>
+                              (ঘ) বিআইএন
+                            </td>
+                            <td>:</td>
+                            <td>
+                              <span> {{ licence.bin_number }} </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="6">&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>৯। (ক) অর্থ বছর</td>
+                            <td>:</td>
+                            <td>
+                              <span> {{ en2bn(licence.year_name) }} </span>
+                            </td>
+
+                            <td>(খ) ব্যবসার শুরুর অর্থ বছর</td>
+                            <td>:</td>
+                            <td>
+                              <span>
+                                {{ en2bn(licence.start_year_name) }}
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>১০। বাজারের নাম</td>
+                            <td>:</td>
+                            <td>
+                              <span> {{ licence.bazar_name }} </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>১১। (ক) মালিকের স্থায়ী ঠিকানা</td>
+                            <td>:</td>
+                            <td colspan="4" style="white-space: normal;">
+                              <span> {{ licence.present_address }} </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="6">&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <th
+                              style="border-bottom: 1px solid  #ccc;padding-bottom:5px;"
+                            >
+                              ১২। <span> করের বিবরণ </span> <br />
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              <span style="margin-left: 26px">
+                                (ক) ট্রেড লাইসেন্স ফি
+                              </span>
+                            </td>
+                            <td>:</td>
+                            <td>
+                              <span>
+                                {{ en2bn(licence.annual_tax) }} টাকা
+                              </span>
+                            </td>
+
+                            <td>(খ) সাইনবোর্ড ফি</td>
+                            <td>:</td>
+                            <td>
+                              <span>
+                                {{ en2bn(licence.signboard_fee) }} টাকা
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <span style="margin-left: 26px">
+                                (গ) ব্যবসা ও পেশা বৃত্তির উপর কর
+                              </span>
+                            </td>
+                            <td>:</td>
+                            <td>
+                              <span>
+                                {{ en2bn(licence.business_profession_tax) }}
+                                টাকা
+                              </span>
+                            </td>
+
+                            <td>(ঘ) আয় কর / উৎস কর</td>
+                            <td>:</td>
+                            <td>
+                              <span>
+                                {{ en2bn(licence.income_tax) }} টাকা
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <span style="margin-left: 26px"> (ঙ) ভ্যাট </span>
+                            </td>
+                            <td>:</td>
+                            <td>
+                              <span> {{ en2bn(licence.vat) }} টাকা </span>
+                            </td>
+
+                            <td>(চ) সার্ভিস চার্জ</td>
+                            <td>:</td>
+                            <td>
+                              <span>
+                                {{ en2bn(licence.service_charge) }} টাকা
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding-bottom:10px;">
+                              <span style="margin-left: 26px">
+                                (ছ) সংশোধন ফি
+                              </span>
+                            </td>
+
+                            <td>:</td>
+
+                            <td>
+                              <span>
+                                {{ en2bn(licence.correction_fee) }} টাকা
+                              </span>
+                            </td>
+
+                            <td>
+                              (জ) পুর্বের বকেয়া
+                            </td>
+
+                            <td>:</td>
+
+                            <td>
+                              <span> {{ en2bn(licence.prev_due) }} টাকা </span>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <th
+                              colspan="3"
+                              style="border-top: 1px solid #ccc;"
+                            ></th>
+                            <th style="border-top: 1px solid #ccc;">
+                              সর্বমোট
+                            </th>
+                            <th style="border-top: 1px solid #ccc">:</th>
+                            <th style="border-top: 1px solid #ccc">
+                              {{ en2bn(licence.total_amount) }} টাকা
+                            </th>
+                          </tr>
+
+                          <tr>
+                            <td
+                              colspan="6"
+                              style="text-align:center; padding:30px 0; border-bottom: 2px solid #ddd;"
+                            >
+                              <b>
+                                অত্র ট্রেড লাইসেন্স এর মেয়াদ ৩০ শে জুন,
+                                {{ getLastYear(licence.year_name) }} পর্যন্ত
+                              </b>
+                            </td>
+                          </tr>
+                        </tbody>
                       </table>
                     </div>
-                    <br />
-                    <div class="col-md-12">
-                      <p
-                        style="font-size:14px;color:red !important;text-align:center"
-                      >
-                        নিয়মিত ইউপি কর পরিশোধ করুন, ইউনিয়নের উন্নয়নে অংশ নিন।
-                      </p>
+                    <div
+                      class="row"
+                      style="text-align: center; position: absolute; bottom: 0; margin: 0; left: 0; right: 0;"
+                    >
+                      <div class="col-md-6">
+                        <p>
+                          <span
+                            style="border-top: 1px dashed #000; padding:0 20px; padding-top:5px;width:200px; display: inline-block;"
+                          >
+                            সচিব
+                          </span>
+                        </p>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                          <span
+                            style="border-top: 1px dashed #000; padding:0 20px; padding-top:5px;width:200px; display: inline-block;"
+                          >
+                            চেয়ারম্যান
+                          </span>
+                        </p>
+                      </div>
+                      <div class="col-md-12">
+                        <p
+                          style="font-size:13px;color:red !important;text-align:center;border-top: 1px solid #ccc; padding: 10px; margin: 0;"
+                        >
+                          নিয়মিত ইউপি কর পরিশোধ করুন, ইউনিয়নের উন্নয়নে অংশ নিন।
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <!-- End of col-md-6 -->
@@ -209,11 +414,11 @@
 <script>
 import ReportsService from "@/services/TlReportsService";
 import UnionBillDetails from "@/services/UnionBillDetails";
-import VueQrcode from 'vue-qrcode-component';
+import VueQrcode from "vue-qrcode-component";
 export default {
-   components: {
+  components: {
     // Register the component
-    'vue-qrcode': VueQrcode,
+    "vue-qrcode": VueQrcode
   },
   name: "BillReport",
   data() {
@@ -244,6 +449,18 @@ export default {
   },
   mounted() {
     this.getData();
+  },
+  computed: {
+    currentDate() {
+      let currentDate = new Date();
+      let options = { day: "numeric", month: "numeric", year: "numeric" };
+      return currentDate.toLocaleDateString("en-GB", options);
+    },
+    currentTime() {
+      const currentDateTime = new Date();
+      const timeOptions = { hour: "numeric", minute: "numeric", hour12: true };
+      return currentDateTime.toLocaleTimeString("en-US", timeOptions);
+    }
   },
   methods: {
     async getData() {
@@ -280,7 +497,7 @@ export default {
       }
       return replaceString;
     },
-     getLastYear(inputString) {
+    getLastYear(inputString) {
       let yearsArray = inputString.split("-");
       return this.en2bn(yearsArray[1]);
     },
@@ -333,17 +550,28 @@ export default {
   width: 300px;
 }
 .bill-print {
-    border: 1px solid #000;
-  }
+  width: 210mm;
+  border: 1px solid #000;
+  margin: 50px auto;
+  font-family: "SolaimanLipi";
+  height: 367mm;
+}
 @media print {
   @page {
-    size: auto;
+    size: a4 portrait;
     margin: 0 0 0 0;
     background: #fff !important;
-   
+  }
+  html,
+  body {
+    width: 100%;
+    height: 99%;
   }
   .bill-print {
-    margin-top: 50px;
+    margin-top: 20px;
+    width: 95%;
+    height: 99%;
+    border: none;
   }
   .v-datatable__actions {
     display: none;
