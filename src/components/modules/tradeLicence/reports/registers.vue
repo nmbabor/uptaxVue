@@ -66,7 +66,7 @@
                     <td>
                       <div class="col-md-12"  style="text-align:center">
                          <br>
-                        <h5>{{credentials['union']}} ইউনিয়ন পরিষদ ধার্য কর রেজিষ্টার প্রতিবেদন, <span v-if="credentials['bazar']"> {{credentials['bazar']}}, </span> </span> <span v-if="(credentials['year'])"> {{credentials['year']}}</span></h5>
+                        <h5>{{credentials['union']}} ইউনিয়ন পরিষদ ট্রেড লাইসেন্স ধার্য কর রেজিস্টার, <span v-if="credentials['bazar']"> {{credentials['bazar']}}, </span> <span v-if="(credentials['year'])"> {{credentials['year']}}</span></h5>
                         <p class="no-print union-title">
                          {{credentials['union_details']}}
                         </p>

@@ -59,7 +59,7 @@
                       class="row"
                       style="text-align:center;padding:10px 0;width:100%;margin:0"
                     >
-                      <div class="col-md-4" style="width:17%;float:left;">
+                      <div class="col-md-3" style="width:17%;float:left;">
                         <vue-qrcode
                           :text="
                             qrCodeData +
@@ -82,7 +82,7 @@
                           </p>
                         </div>
                       </div>
-                      <div class="col-md-4" style="width:66%;float:left;">
+                      <div class="col-md-6" style="width:66%;float:left;">
                         <img
                           :src="base_url + '/images/default/bd.png'"
                           alt="Bangladesh"
@@ -93,10 +93,10 @@
                         </h6>
                         <p>
                           লাইসেন্স নং :
-                          <b> 2023050100003{{ licence.trade_licence_no }} </b>
+                          <b> {{ licence.trade_licence_no }} </b>
                         </p>
                       </div>
-                      <div class="col-md-4" style="width:17%;float:right;">
+                      <div class="col-md-3" style="width:17%;float:right;">
                         <div
                           style="width: 120px; height: 130px; border: 1px solid #ddd; float: right"
                         >
@@ -242,7 +242,7 @@
                             <td>১১। (ক) মালিকের স্থায়ী ঠিকানা</td>
                             <td>:</td>
                             <td colspan="4" style="white-space: normal;">
-                              <span> {{ licence.present_address }} </span>
+                              <span> {{ licence.permanent_address }} </span>
                             </td>
                           </tr>
                           <tr>
@@ -373,7 +373,7 @@
                       class="row"
                       style="text-align: center; position: absolute; bottom: 0; margin: 0; left: 0; right: 0;"
                     >
-                      <div class="col-md-6">
+                      <div class="col-md-6" style="margin-bottom: 60px;">
                         <p>
                           <span
                             style="border-top: 1px dashed #000; padding:0 20px; padding-top:5px;width:200px; display: inline-block;"
@@ -382,7 +382,7 @@
                           </span>
                         </p>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-6" style="margin-bottom: 60px;">
                         <p>
                           <span
                             style="border-top: 1px dashed #000; padding:0 20px; padding-top:5px;width:200px; display: inline-block;"

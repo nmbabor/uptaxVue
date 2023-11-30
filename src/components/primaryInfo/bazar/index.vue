@@ -15,6 +15,7 @@ export default {
         district_id:'',
         upazila_id:'',
         union_id:'',
+        sl_no: this.newSerialNo,
         bn_name:'',
         name:'',
         word:''
@@ -24,6 +25,11 @@ export default {
   mounted () {
     
     this.getData()
+  },
+  computed:{
+    newSerialNo(){
+      return data.length + 1;
+    }
   },
 
   methods: {
@@ -42,6 +48,7 @@ export default {
                 timer: 1500
               })
               this.$router.push({ name: 'bazar' })
+              this.form.sl_no= ''
               this.form.name= ''
               this.form.bn_name= ''
               this.form.word= ''
@@ -73,6 +80,7 @@ export default {
           if (resp){
             AreaService.bazarUpdate(data,data.id)
               .then(success=>{
+                console.log(success)
                 this.$swal({
                   type: 'success',
                   title: 'সফল ভাবে আপডেট হয়েছে।',
@@ -168,6 +176,10 @@ export default {
                             <div class="modal-body">
                                 <form  method="POST" @submit.prevent="validateBeforeSubmit">
                                   <div class="form-group">
+                                    <label for="input-sl">ক্রমিক নং</label>
+                                    <input type="text" class="form-control" v-model="form.sl_no" id="input-sl" placeholder="ক্রমিক নং" >
+                                  </div>
+                                  <div class="form-group">
                                     <label for="input-1">বাংলা নাম</label>
                                     <input type="text" class="form-control" v-model="form.bn_name" id="input-1" placeholder="বাংলা নাম">
                                   </div>
@@ -242,6 +254,7 @@ export default {
                          <table class="table table-striped" v-if="bazar.length>0">
                             <thead>
                                 <tr>
+                                <th scope="col">ক্রমিক</th>
                                 <th scope="col">নাম</th>
                                 <th scope="col">ইংরেজি নাম</th>
                                 <th scope="col"> ওয়ার্ড</th>
@@ -250,6 +263,7 @@ export default {
                             </thead>
                             <tbody>
                                 <tr v-for="(data,index) in bazar" :key="index">
+                                    <td>{{data.sl_no}}</td>
                                     <td>{{data.bn_name}}</td>
                                     <td>{{data.name}}</td>
                                     <td>{{data.word}}</td>
@@ -271,16 +285,20 @@ export default {
                             <div class="modal-body">
                                 <form  method="POST" @submit.prevent="update(data)">
                                   <div class="form-group">
-                                    <label for="input-1">বাংলা নাম</label>
-                                    <input type="text" class="form-control" v-model="data.bn_name" id="input-1" placeholder="বাংলা নাম">
+                                    <label for="update-input-sl">ক্রমিক নং</label>
+                                    <input type="text" class="form-control" v-model="data.sl_no" id="update-input-sl" placeholder="ক্রমিক নং">
+                                  </div>
+                                   <div class="form-group">
+                                    <label for="update-input-1">বাংলা নাম</label>
+                                    <input type="text" class="form-control" v-model="data.bn_name" id="update-input-1" placeholder="বাংলা নাম">
                                   </div>
                                   <div class="form-group">
-                                    <label for="input-2">ইংরেজি নাম</label>
-                                    <input type="text" class="form-control" v-model="data.name" id="input-2" placeholder="ইংরেজি নাম">
+                                    <label for="update-input-2">ইংরেজি নাম</label>
+                                    <input type="text" class="form-control" v-model="data.name" id="update-input-2" placeholder="ইংরেজি নাম">
                                   </div>
                                   <div class="form-group">
-                                    <label for="input-3"> ওয়ার্ড</label>
-                                    <input type="number" class="form-control" v-model="data.word" id="input-3" placeholder="ওয়ার্ড">
+                                    <label for="update-input-3"> ওয়ার্ড</label>
+                                    <input type="number" class="form-control" v-model="data.word" id="update-input-3" placeholder="ওয়ার্ড">
                                   </div>
                                   
                                   <div class="form-group">
