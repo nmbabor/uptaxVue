@@ -376,7 +376,7 @@ export default {
   name: "BillReport",
   data() {
     return {
-      qrCodeData: `${window.location.origin}/trade-licence-info`,
+      qrCodeData: `${window.location.origin}/trade-licence-details`,
       loading: false,
       base_url: this.$baseUrl,
       logoUrl: "",

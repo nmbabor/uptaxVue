@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 const baseRoutes = [
@@ -45,8 +44,9 @@ const baseRoutes = [
     //Trade licence Reports
     { path: '/tl-report/register', name: 'TradeLicenceRegister', meta: { parent: 'TradeLicence' }, component: require('@/components/modules/tradeLicence/reports/registers').default },
 
-    { path: '/trade-licence-details', name: 'tradeLicenceDetails', meta: { parent: 'TradeLicence' }, component: require('@/components/modules/tradeLicence/reports/tradeLicenceDetails').default },
     { path: '/trade-licence-print', name: 'tradeLicencePrint', meta: { parent: 'TradeLicence' }, component: require('@/components/modules/tradeLicence/reports/licencePrint').default },
+    
+    { path: '/trade-licence-details', name: 'tradeLicenceDetails', meta: { layout: 'login' }, component: require('@/components/modules/tradeLicence/reports/tradeLicenceDetails').default },
 ]
 const routes = baseRoutes
 const router = new Router({
@@ -54,7 +54,7 @@ const router = new Router({
     routes
 })
 router.beforeEach((to, from, next) => {
-    if (localStorage.getItem('token') !== null || to.path === '/login') {
+    if (localStorage.getItem('token') !== null || to.path === '/login' || to.path === '/trade-licence-details') {
         next()
     } else {
         next('/login')

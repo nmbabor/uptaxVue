@@ -1,189 +1,111 @@
 <template>
   <div>
 
-    <div class="row bill-details">
+    <div class="row">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-info">
-            <div class="card-btn pull-right">
-              <button class="btn btn-xs btn-primary " v-print="'#printMe'"><i class="fa fa-print"></i> Print</button>
-              <router-link tag="a" to="/report/due-tax" class="btn btn-xs btn-light waves-effect waves-light m-1"><i class="fa fa-list"></i> বকেয়া প্রতিবেদন </router-link>
-            </div>
-            <h4 class="card-title"> {{area.union_name}} ইউনিয়ন পরিষদ ট্রেড লাইসেন্স প্রতিবেদন</h4>
+            <h4 class="card-title text-center"> {{ area.union_name }} ইউনিয়ন পরিষদ ট্রেড লাইসেন্স যাচাই</h4>
           </div>
           <div class="card-body">
-            <div v-if="loading" class="col-md-12" style="text-align:center;position:absolute;background: rgb(30, 71, 108,.8);z-index:9;padding:100px;left:0;height:85%">
-                <img style="width:100px" src="/static/assets/images/blue.gif" alt="Loading..">
-              </div>
-            <div class="rows">
-            <div id="printMe" class="raw bill-print">
-              <div class="row" v-for="licence in licencesData" :key="licence.id" style="padding:5px;overflow:hidden;" >
-             <div class="col-md-12" style="width:100%;">
-                 <div class="row" style="text-align:center;padding:10px 0;width:100%;margin:0">
-                   <div class="col-md-2" style="width:17%;float:left;">
-                   <img :src="base_url+'/images/default/bd.png'" alt="Bangladesh" class="bd-logo">
-                   </div>
-                   <div class="col-md-8" style="width:66%;float:left;">
-                     <h5>{{area.union_name}} ইউনিয়ন পরিষদ </h5>
-                    <h6> উপজেলাঃ{{area.upazila_name}} , জেলাঃ {{area.district_name}} <br>
-                    <small> <span>{{en2bn(licence.year_name)}}</span> </small></h6>
-                   </div>
-                   <div class="col-md-2" style="width:17%;float:right;">
-                     <img class="union-logo" v-if="logoUrl!=''" :src="logoUrl">
-                   </div>
-                    
-                </div>
-                <div class="col-md-12 main-table">
-              <table class="table table-bordered table-striped bill-table" >
-                  <tr>
-                    <th> ট্রেডলাইসেন্স নাম্বার <b>:</b> </th>
-                    <td>{{en2bn(licence.trade_licence_no)}}</td>
-                  </tr>
-                  <tr>
-                    <th> প্রোপাইটরের নাম <b>:</b> </th>
-                    <td>{{licence.owner_name}}</td>
-                  </tr>
-                  <tr>
-                    <th> প্রতিষ্ঠানের নাম <b>:</b> </th>
-                    <td>{{licence.organization_name}}</td>
-                  </tr>
-                  <tr>
-                    <th> মোবাইল নাম্বার <b>:</b> </th>
-                    <td>{{licence.mobile}}</td>
-                  </tr>
-                   <tr>
-                    <th> হোল্ডিং নং <b>:</b> </th>
-                    <td>{{en2bn(licence.holding_no)}}</td>
-                  </tr>
-                  <tr>
-                    <th> পিতা/স্বামির নাম <b>:</b> </th>
-                    <td>{{licence.father_or_husband}}</td>
-                  </tr>
-                  <tr>
-                    <th> বাজারের নাম <b>:</b> </th>
-                    <td>{{licence.bazar_name}}</td>
-                  </tr>
-                  <tr>
-                    <th> ওয়ার্ড <b>:</b> </th>
-                    <td>{{en2bn(licence.word)}}</td>
-                  </tr>
-                  <tr>
-                    <th> ব্যবসার ধরণ <b>:</b> </th>
-                    <td>{{licence.business_type}}</td>
-                  </tr>
-                   <tr>
-                    <th> জাতীয় পরিচয়পত্র/ জন্ম নিবন্ধন নম্বর <b>:</b> </th>
-                    <td>{{licence.nid}}</td>
-                  </tr>
-                  <tr>
-                    <th> জন্ম তারিখ <b>:</b> </th>
-                    <td>{{en2bn(licence.birth_date)}}</td>
-                  </tr>
-                   <tr>
-                    <th> বর্তমান ঠিকানা <b>:</b> </th>
-                    <td>{{licence.present_address}}</td>
-                  </tr>
-                   <tr>
-                    <th> স্থায়ী ঠিকানা <b>:</b> </th>
-                    <td>{{licence.permanent_address}}</td>
-                  </tr>
-                   
-                  <tr>
-                    <th> ব্যবসার শুরু করার অর্থ বছর <b>:</b> </th>
-                    <td>{{en2bn(licence.start_year_name)}}</td>
-                  </tr>
-                  <tr>
-                    <th> দোকান ঘরের মালিকানা <b>:</b> </th>
-                    <td>{{licence.own_rent}}</td>
-                  </tr>
-                   <tr>
-                    <th> সাইনবোর্ড এর আয়তন <b>:</b> </th>
-                    <td>{{licence.signboard_length}}</td>
-                  </tr>
-                   <tr>
-                    <th> টিন নাম্বার <b>:</b> </th>
-                    <td>{{licence.tin_number}}</td>
-                  </tr>
-                   <tr>
-                    <th> বিন নাম্বার <b>:</b> </th>
-                    <td>{{licence.bin_number}}</td>
-                  </tr>
-                  <tr>
-                    <th colspan="2" style="text-align:center"> করের বিবরণ </th>
-                  </tr>
-                  <tr>
-                    <th> পুর্বের বকেয়া<b>:</b> </th>
-                    <td>{{en2bn(licence.prev_due)}}</td>
-                  </tr>
-                  <tr>
-                    <th> সাইনবোর্ড ফি <b>:</b> </th>
-                    <td>{{en2bn(licence.signboard_fee)}}</td>
-                  </tr>
-                  <tr>
-                    <th> ট্রেড লাইসেন্স ফি <b>:</b> </th>
-                    <td>{{en2bn(licence.annual_tax)}}</td>
-                  </tr>
-                   <tr>
-                    <th> ব্যবসা ও পেশা বৃত্তির উপর কর <b>:</b> </th>
-                    <td>{{en2bn(licence.business_profession_tax)}}</td>
-                  </tr>
-                  <tr>
-                    <th> আয় কর / উৎস কর <b>:</b> </th>
-                    <td>{{en2bn(licence.income_tax)}}</td>
-                  </tr>
-                  <tr>
-                    <th> ভ্যাট <b>:</b> </th>
-                    <td>{{en2bn(licence.vat)}}</td>
-                  </tr>
-                  <tr>
-                    <th> সার্ভিস চার্জ <b>:</b> </th>
-                    <td>{{en2bn(licence.service_charge)}}</td>
-                  </tr>
-                   <tr>
-                    <th> সংশোধন ফি <b>:</b> </th>
-                    <td>{{en2bn(licence.correction_fee)}}</td>
-                  </tr>
-                  <tr>
-                    <th> বার্ষিক কর সহ ফী  <small>({{en2bn(licence.year_name)}})</small> <b>:</b> </th>
-                    <td>{{en2bn(licence.total_amount - licence.prev_due)}}</td>
-                  </tr>
-                  <tr>
-                    <th> মোট কর সহ ফী <b>:</b> </th>
-                    <td> <b> {{en2bn(licence.total_amount)}} </b> </td>
-                  </tr>
-                  <tr v-if="licence.discount>0">
-                    <th> ডিসকাউন্ট<b>:</b> </th>
-                    <td>{{en2bn(licence.discount)}}</td>
-                  </tr>
-                  
-                  <tr v-if="licence.discount>0">
-                    <th> মোট টাকা<b>:</b> </th>
-                    <td> <b> {{en2bn(licence.total_amount)}} </b> </td>
-                  </tr>
-
-                  <tr v-if="licence.total_paid>0">
-                    <th> মোট জমা<b>:</b> </th>
-                    <td>{{en2bn(licence.total_paid)}}</td>
-                  </tr>
-                  <tr v-if="licence.last_payment_date!=null">
-                    <th style="background:#e7f9f7 !important"> জমা তারিখ <b>:</b> </th>
-                    <td>{{en2bn(licence.last_payment_date)}}</td>
-                  </tr>
-                  <tr  v-if="licence.total_paid>0">
-                    <th> মোট বকেয়া<b>:</b> </th>
-                    <td>{{en2bn((licence.total_amount - licence.total_paid))}}</td>
-                  </tr>
-              </table>
-              </div>
-              <br>
-              <div class="col-md-12">
-                <p style="font-size:14px;color:red !important;text-align:center">নিয়মিত ইউপি কর পরিশোধ করুন, ইউনিয়নের উন্নয়নে অংশ নিন। </p>
-              </div>
-             </div>
-             <!-- End of col-md-6 -->
-               </div>
-             <!-- End of Row -->
+            <div v-if="loading" class="col-md-12"
+              style="text-align:center;position:absolute;background: rgb(30, 71, 108,.8);z-index:9;padding:100px;left:0;height:85%">
+              <img style="width:100px" src="/static/assets/images/blue.gif" alt="Loading..">
             </div>
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-6">
+                <div class="row licence-verify" style="padding:5px;overflow:hidden;">
+                  <div class="col-md-12" style="width:100%;">
+                    <div class="row" style="text-align:center;padding:10px 0;width:100%;margin:0">
+                      <div class="col-md-2" style="width:17%;float:left;">
+                        <img :src="base_url + '/images/default/bd.png'" alt="Bangladesh" class="bd-logo">
+                      </div>
+                      <div class="col-md-8" style="width:83%;float:left;">
+                        <h6 style="color:green">{{ area.union_name }} ইউনিয়ন পরিষদ </h6>
+                        <p>{{ area.upazila_name }},{{ area.district_name }}</p>
+                      </div>
+
+
+                    </div>
+                    <div class="col-md-12 main-table">
+                      <table class="table license-details">
+                        <tr>
+                          <td> ট্রেড লাইসেন্স নং <b class="mobile-only">:</b></td>
+                          <th> <b>:</b> </th>
+                          <td>{{ en2bn(licence.trade_licence_no) }}</td>
+                        </tr>
+                        <tr>
+                          <td> প্রতিষ্ঠানের নাম <b class="mobile-only">:</b> </td>
+                          <th> <b>:</b> </th>
+                          <td>{{ licence.organization_name }}</td>
+                        </tr>
+                        <tr>
+                          <td> মালিকের নাম <b class="mobile-only">:</b> </td>
+                          <th> <b>:</b> </th>
+                          <td>{{ licence.owner_name }}</td>
+                        </tr>
+                        <tr>
+                          <td> হোল্ডিং নং <b class="mobile-only">:</b> </td>
+                          <th> <b>:</b> </th>
+                          <td>{{ en2bn(licence.holding_no) }}</td>
+                        </tr>
+                        <tr>
+                          <td> পিতা/স্বামির নাম <b class="mobile-only">:</b> </td>
+                          <th> <b>:</b> </th>
+                          <td>{{ licence.father_or_husband }}</td>
+                        </tr>
+                        <tr>
+                          <td> মাতার নাম <b class="mobile-only">:</b> </td>
+                          <th> <b>:</b> </th>
+                          <td>{{ licence.mother }}</td>
+                        </tr>
+                        <tr>
+                          <td> বাজারের নাম <b class="mobile-only">:</b> </td>
+                          <th> <b>:</b> </th>
+                          <td>{{ licence.bazar_name }}</td>
+                        </tr>
+                        <tr>
+                          <td> ওয়ার্ড <b class="mobile-only">:</b> </td>
+                          <th> <b>:</b> </th>
+                          <td>{{ en2bn(licence.word) }}</td>
+                        </tr>
+                        <tr>
+                          <td> ব্যবসার ধরণ <b class="mobile-only">:</b> </td>
+                          <th> <b>:</b> </th>
+                          <td>{{ licence.business_type }}</td>
+                        </tr>
+                        <tr>
+                          <td> প্রতিষ্ঠানের ঠিকানা <b class="mobile-only">:</b> </td>
+                          <th> <b>:</b> </th>
+                          <td>{{ licence.present_address }}</td>
+                        </tr>
+                        <tr>
+                          <td> মালিকের ঠিকানা <b class="mobile-only">:</b> </td>
+                          <th> <b>:</b> </th>
+                          <td>{{ licence.permanent_address }}</td>
+                        </tr>
+
+                        <tr>
+                          <td> অর্থ বছর <b class="mobile-only">:</b> </td>
+                          <th> <b>:</b> </th>
+                          <td>{{ en2bn(licence.year_name) }}</td>
+                        </tr>
+                      </table>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                      <p style="font-size:14px;color:red !important;text-align:center">
+                        <b> অত্র ট্রেড লাইসেন্স এর মেয়াদ ৩০ শে জুন,
+                          {{ getLastYear(licence.year_name) }} পর্যন্ত
+                        </b>
+                      </p>
+                    </div>
+                  </div>
+                  <!-- End of col-md-6 -->
+                </div>
+                <!-- End of Row -->
+              </div>
             </div>
           </div>
         </div>
@@ -193,140 +115,119 @@
 </template>
 <script>
 import ReportsService from '@/services/TlReportsService'
-import UnionBillDetails from '@/services/UnionBillDetails'
 export default {
-  name: 'BillReport',
-  data () {
+  name: 'LicenceVerify',
+  data() {
     return {
-      loading:false,
-      base_url:this.$baseUrl,
-      logoUrl:'',
-      signatureUrl:'',
-      form:{
-        union_id:this.$union_id,
-        year:this.$year,
-        trade_licence_id:''
-      },
-      licencesData: [],
+      loading: false,
+      base_url: this.$baseUrl,
+      licence: {},
       area: {},
-      prevYear: {
-        due_years:'',
-        due_tax:0
-      },
-      currrentTax:{},
-      trade_licence_id:{
-          value:'',
-          label:''
-      },
-      union_details:''
 
     }
   },
-  mounted () {
+  mounted() {
     this.getData()
-     
+
   },
   methods: {
-    async getData () {
-     
-      if(this.$route.query.year){
-        this.form.year = this.$route.query.year
+    async getData() {
+      if (this.$route.query.id && this.$route.query.year) {
+        this.loading = true;
+        this.singleLicenceData()
       }
-      if(this.$route.query.id){
-         this.loading=true;
-        var id = this.$route.query.id;
-        var allId = id.split(",");
-        if(allId.length>1){
-          this.singleLicenceData(allId)
-        }else{
-          this.trade_licence_id.value = this.$route.query.id
-          this.singleLicenceData()
-        }
-      }
-      const unionInfo = await UnionBillDetails.show(this.$union_id)
-      this.union_details = unionInfo.data
-      this.logoUrl = this.$baseUrl+unionInfo.data.logo
-      this.signatureUrl = this.$baseUrl+unionInfo.data.signature
     },
-     en2bn(replaceString) {
-      replaceString = replaceString+"";
-       if(replaceString==''){
-         return '০';
-       }
-      var bn = ["-","১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯", "০"];
-      var en = ["-","1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-      var regex; 
+    getLastYear(inputString = '') {
+      if (inputString != '') {
+        let yearsArray = inputString.split("-");
+        return this.en2bn(yearsArray[1]);
+      }
+      return '';
+
+    },
+    en2bn(replaceString) {
+      replaceString = replaceString + "";
+      if (replaceString == '') {
+        return '০';
+      }
+      var bn = ["-", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯", "০"];
+      var en = ["-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+      var regex;
       for (var i = 0; i < en.length; i++) {
-       regex = new RegExp(en[i], "g");
+        regex = new RegExp(en[i], "g");
         replaceString = replaceString.replace(regex, bn[i]);
       }
       return replaceString;
     },
-     async singleLicenceData(allData=''){
-       if(allData!=''){
-           ReportsService.singleLicence({trade_licence_id:allData,year:this.form.year,union_id:this.$union_id}).then(response=>{
-                this.licencesData = response.data.licences
-                this.area = response.data.area
-                this.loading=false;
-            }).catch(err=>{
-                this.loading=false;
-            })
-       }else if(this.trade_licence_id.value!==''){
-             ReportsService.singleLicence({trade_licence_id:[this.trade_licence_id.value],year:this.form.year,union_id:this.$union_id}).then(response=>{
-                this.licencesData = response.data.licences
-                this.area = response.data.area
-                this.loading=false;
-
-            }).catch(err=>{
-                this.loading=false;
-            })
-
-         }
-
+    async singleLicenceData() {
+      ReportsService.licenceVerify({ trade_licence_id: this.$route.query.id, year: this.$route.query.year }).then(response => {
+        this.licence = response.data.licence
+        this.area = response.data.area
+        this.loading = false;
+      }).catch(err => {
+        this.loading = false;
+      })
     },
 
   }
 }
 </script>
-<style media="print">
-  .main-table{position: relative;}
-  .up-bg{position: absolute;top: 50px;width: 100%;text-align: center}
-  .up-bg-logo{opacity: .15;width:300px;}
-  @media print {
-    @page {size: auto;margin:0;background:#fff !important;}
-    .v-datatable__actions{
-      display: none;
-    }
-    .table td, .table th{color: #000;padding:2px 3px;}
-     h5, h4,h6{color: #000;}
-    *{color:#000}
-    .bd-logo{float: left;width: 80px;}
-    .union-logo{float: right;width: 80px;}
-    .bill-print{background: #fff;color:#000;}
-    /* table thead th:last-child{display: none;}
-    table td:last-child{display: none;} */
-    
-    
-  }
-  .bill-details .card .table td,.bill-details .card .table th{padding: 3px 10px;}
-
-  .table th b{display: block; font-weight: bolder; float: right;}
-  .btn-action.btn-edit i{font-size: 8px;}
-  .btn-action i{font-size: 9px;}
-  .btn-action.btn-xs{float: left;font-size: 9px;margin: 1px;}
-  ul.pagination{display:block;margin-top: 5px;width: 100%;text-align: center;}
-  ul.pagination li{display:inline-block;}
- 
-  .bill-details .table-bordered td,.bill-details .table-bordered th {
-    border: 1px solid;
-  }
-  
-  
-  .bill-print h5 {
-    color: #3a803e;
+<style>
+.licence-verify{
+  background-color: #fff;
+  color: #000;
 }
-.bill-print h6 {
-    color: #03306b;
+.table.license-details tr td {
+  white-space: normal;
+}
+.table.license-details tr th {
+  white-space: normal;
+  background: #fff !important;
 }
 
+.up-bg {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  text-align: center
+}
+
+.up-bg-logo {
+  opacity: .15;
+  width: 300px;
+}
+
+
+.bill-details .card .table td,
+.bill-details .card .table th {
+  padding: 3px 10px;
+}
+
+.table th b {
+  display: block;
+  font-weight: bolder;
+  float: right;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* Responsive styles */
+@media (max-width: 400px) {
+  .mobile-only {
+    display: inline;
+  }
+
+  table.license-details,
+  table.license-details th,
+  table.license-details td,
+  table.license-details tr {
+    display: block;
+  }
+
+  table.license-details th {
+    display: none;
+  }
+}
 </style>

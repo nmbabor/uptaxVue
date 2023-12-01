@@ -8,6 +8,9 @@ export default {
     singleLicence(form) {
         return Api().get('tl-report/single-licence', { params: form })
     },
+    licenceVerify(form) {
+        return Api().get('trade-licence-verify', { params: form })
+    },
 
     
     allHoldings(form) {
