@@ -251,7 +251,7 @@ export default {
                   <span v-if="validateErrors.details" class="help text-danger">{{ validateErrors.details[0] }}</span>
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="trade_license_prefix"> জেলা, উপজেলা, ইউনিয়ন কোড (ট্রেড লাইসেন্স কোড) </label>
+                  <label for="trade_license_prefix"> ট্রেড লাইসেন্স কোড (জেলা, উপজেলা, ইউনিয়ন কোড) </label>
                   <input type="text" name="trade_license_prefix" v-model="form.trade_license_prefix" id="trade_license_prefix" placeholder="শুরুর বছর এর পরের কোড"
                     :class="{ 'form-control': true, 'text-danger': errors.has('trade_license_prefix') }">
                   <span v-show="errors.has('trade_license_prefix')" class="help text-danger">{{ errors.first('trade_license_prefix') }}</span>

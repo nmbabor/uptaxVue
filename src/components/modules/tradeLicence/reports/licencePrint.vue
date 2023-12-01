@@ -8,11 +8,8 @@
               <button class="btn btn-xs btn-primary " v-print="'#printMe'">
                 <i class="fa fa-print"></i> Print
               </button>
-              <router-link
-                tag="a"
-                to="/report/due-tax"
-                class="btn btn-xs btn-light waves-effect waves-light m-1"
-                ><i class="fa fa-list"></i> বকেয়া প্রতিবেদন
+              <router-link tag="a" to="/report/due-tax" class="btn btn-xs btn-light waves-effect waves-light m-1"><i
+                  class="fa fa-list"></i> বকেয়া প্রতিবেদন
               </router-link>
             </div>
             <h4 class="card-title">
@@ -20,34 +17,16 @@
             </h4>
           </div>
           <div class="card-body">
-            <div
-              v-if="loading"
-              class="col-md-12"
-              style="text-align:center;position:absolute;background: rgb(30, 71, 108,.8);z-index:9;padding:100px;left:0;height:85%"
-            >
-              <img
-                style="width:100px"
-                src="/static/assets/images/blue.gif"
-                alt="Loading.."
-              />
+            <div v-if="loading" class="col-md-12"
+              style="text-align:center;position:absolute;background: rgb(30, 71, 108,.8);z-index:9;padding:100px;left:0;height:85%">
+              <img style="width:100px" src="/static/assets/images/blue.gif" alt="Loading.." />
             </div>
             <div class="rows" style="background: #fff; padding: 30px; 0">
-              <div
-                id="printMe"
-                class="raw bill-print"
-                style="background: #fff; "
-              >
-                <div
-                  class="row"
-                  v-for="licence in licencesData"
-                  :key="licence.id"
-                  style="padding:5px;overflow:hidden;height: 100%;"
-                >
+              <div id="printMe" class="raw bill-print" style="background: #fff; ">
+                <div class="row" v-for="licence in licencesData" :key="licence.id"
+                  style="padding:5px;overflow:hidden;height: 100%;">
                   <div class="col-md-12" style="width:100%;">
-                    <div
-                      class="row"
-                      style="text-align:center;padding:10px 0;width:100%;margin:0"
-                    >
+                    <div class="row" style="text-align:center;padding:10px 0;width:100%;margin:0">
                       <div class="col-md-12">
                         <h5>{{ area.union_name }} ইউনিয়ন পরিষদ</h5>
                         <h6 style="color: red;">
@@ -55,22 +34,14 @@
                         </h6>
                       </div>
                     </div>
-                    <div
-                      class="row"
-                      style="text-align:center;padding:10px 0;width:100%;margin:0"
-                    >
+                    <div class="row" style="text-align:center;padding:10px 0;width:100%;margin:0">
                       <div class="col-md-3" style="width:17%;float:left;">
-                        <vue-qrcode
-                          :text="
-                            qrCodeData +
-                              `?id=${licence.trade_licence_id}&year=${licence.year}`
-                          "
-                          :size="100"
-                        ></vue-qrcode>
+                        <vue-qrcode :text="qrCodeData +
+                          `?id=${licence.trade_licence_id}&year=${licence.year}`
+                          " :size="100"></vue-qrcode>
                         <div style="text-align:left">
                           <p
-                            style="margin-top: 25px; margin-bottom: 5px; border-bottom:2px solid #ccc; padding: 5px; text-align: center;"
-                          >
+                            style="margin-top: 25px; margin-bottom: 5px; border-bottom:2px solid #ccc; padding: 5px; text-align: center;">
                             লাইসেন্স ইস্যুর বিবরণ
                           </p>
                           <p style="margin-bottom: 2px;">
@@ -83,11 +54,8 @@
                         </div>
                       </div>
                       <div class="col-md-6" style="width:66%;float:left;">
-                        <img
-                          :src="base_url + '/images/default/bd.png'"
-                          alt="Bangladesh"
-                          style="margin: 0 auto; width: 80px;"
-                        />
+                        <img :src="base_url + '/images/default/bd.png'" alt="Bangladesh"
+                          style="margin: 0 auto; width: 80px;" />
                         <h6 style="color: red; margin-top:5px;">
                           ই-ট্রেড লাইসেন্স
                         </h6>
@@ -97,20 +65,13 @@
                         </p>
                       </div>
                       <div class="col-md-3" style="width:17%;float:right;">
-                        <div
-                          style="width: 120px; height: 130px; border: 1px solid #ddd; float: right"
-                        >
+                        <div style="width: 120px; height: 130px; border: 1px solid #ddd; float: right">
                           <small> ছবি সংযুক্তি </small>
                         </div>
                       </div>
                     </div>
-                    <div
-                      class="col-md-12"
-                      style="border: 2px solid #ccc;padding: 10px;margin-bottom: 15px;"
-                    >
-                      <p
-                        style="margin-bottom:0; color: green; text-align: justify;"
-                      >
+                    <div class="col-md-12" style="border: 2px solid #ccc;padding: 10px;margin-bottom: 15px;">
+                      <p style="margin-bottom:0; color: green; text-align: justify;">
                         স্থানীয় সরকার (ইউনিয়ন পরিষদ) আইন, ২০০৯ (২০০৯ সনের ৬১ নং
                         আইন) এর ধারা ৬৬ তে প্রদত্ত ক্ষমতাবলে সরকার প্রণীত আদর্শ
                         কর তফসিল, ২০১৩ এর ৬ ও ১৭ নং অনুচ্ছেদ অনুযায়ী ব্যবসা,
@@ -120,7 +81,9 @@
                       </p>
                     </div>
                     <div class="col-md-12 main-table">
-                      <table class="table print-table" style="background: url('@/assets/images/bd-bg.png') no-repeat center; background-size:50%" >
+
+                      <table class="table print-table"
+                        style="background: url('@/assets/images/bd-bg.png') no-repeat center; background-size:50%">
                         <tbody>
                           <tr>
                             <td>১। ব্যবসা প্রতিষ্ঠানের নাম</td>
@@ -249,9 +212,7 @@
                             <td colspan="6">&nbsp;</td>
                           </tr>
                           <tr>
-                            <th
-                              style="border-bottom: 1px solid  #ccc;padding-bottom:5px;"
-                            >
+                            <th style="border-bottom: 1px solid  #ccc;padding-bottom:5px;">
                               ১২। <span> করের বিবরণ </span> <br />
                             </th>
                           </tr>
@@ -342,10 +303,7 @@
                           </tr>
 
                           <tr>
-                            <th
-                              colspan="3"
-                              style="border-top: 1px solid #ccc;"
-                            ></th>
+                            <th colspan="3" style="border-top: 1px solid #ccc;"></th>
                             <th style="border-top: 1px solid #ccc;">
                               সর্বমোট
                             </th>
@@ -356,10 +314,7 @@
                           </tr>
 
                           <tr>
-                            <td
-                              colspan="6"
-                              style="text-align:center; padding:30px 0; border-bottom: 2px solid #ddd;"
-                            >
+                            <td colspan="6" style="text-align:center; padding:30px 0; border-bottom: 2px solid #ddd;">
                               <b>
                                 অত্র ট্রেড লাইসেন্স এর মেয়াদ ৩০ শে জুন,
                                 {{ getLastYear(licence.year_name) }} পর্যন্ত
@@ -368,16 +323,16 @@
                           </tr>
                         </tbody>
                       </table>
+                      <div class="watermark">
+                        <img class="watermark-logo" v-if="logoUrl != ''" :src="logoUrl">
+                      </div>
                     </div>
-                    <div
-                      class="row"
-                      style="text-align: center; position: absolute; bottom: 0; margin: 0; left: 0; right: 0;"
-                    >
+                    <div class="row"
+                      style="text-align: center; position: absolute; bottom: 0; margin: 0; left: 0; right: 0;">
                       <div class="col-md-6" style="margin-bottom: 60px;">
                         <p>
                           <span
-                            style="border-top: 1px dashed #000; padding:0 20px; padding-top:5px;width:200px; display: inline-block;"
-                          >
+                            style="border-top: 1px dashed #000; padding:0 20px; padding-top:5px;width:200px; display: inline-block;">
                             সচিব
                           </span>
                         </p>
@@ -385,16 +340,14 @@
                       <div class="col-md-6" style="margin-bottom: 60px;">
                         <p>
                           <span
-                            style="border-top: 1px dashed #000; padding:0 20px; padding-top:5px;width:200px; display: inline-block;"
-                          >
+                            style="border-top: 1px dashed #000; padding:0 20px; padding-top:5px;width:200px; display: inline-block;">
                             চেয়ারম্যান
                           </span>
                         </p>
                       </div>
                       <div class="col-md-12">
                         <p
-                          style="font-size:13px;color:red !important;text-align:center;border-top: 1px solid #ccc; padding: 10px; margin: 0;"
-                        >
+                          style="font-size:13px;color:red !important;text-align:center;border-top: 1px solid #ccc; padding: 10px; margin: 0;">
                           নিয়মিত ইউপি কর পরিশোধ করুন, ইউনিয়নের উন্নয়নে অংশ নিন।
                         </p>
                       </div>
@@ -539,16 +492,7 @@ export default {
 .main-table {
   position: relative;
 }
-.up-bg {
-  position: absolute;
-  top: 50px;
-  width: 100%;
-  text-align: center;
-}
-.up-bg-logo {
-  opacity: 0.15;
-  width: 300px;
-}
+
 .bill-print {
   width: 210mm;
   border: 1px solid #000;
@@ -556,51 +500,83 @@ export default {
   font-family: "SolaimanLipi";
   height: 367mm;
 }
+
+.watermark {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.watermark img {
+  width: 400px;
+  opacity: 0.1;
+  margin: 0 auto;
+}
+
 @media print {
   @page {
     size: a4 portrait;
     margin: 0 0 0 0;
     background: #fff !important;
   }
+
   html,
   body {
     width: 100%;
     height: 99%;
   }
+
   .bill-print {
     margin-top: 20px;
     width: 95%;
     height: 99%;
     border: none;
   }
+  .watermark {
+    top:30px;
+  }
+  .watermark img {
+    width: 500px;
+  }
+
   .v-datatable__actions {
     display: none;
   }
+
   .table td,
   .table th {
     color: #000;
     padding: 2px 3px;
   }
+
   h5,
   h4,
   h6 {
     color: #000;
   }
+
   * {
     color: #000;
   }
+
   .bd-logo {
     float: left;
     width: 80px;
   }
+
   .union-logo {
     float: right;
     width: 80px;
   }
+
   .bill-print {
     background: #fff;
     color: #000;
   }
+
   /* table thead th:last-child{display: none;}
     table td:last-child{display: none;} */
 }
@@ -613,20 +589,24 @@ export default {
 .btn-action.btn-edit i {
   font-size: 8px;
 }
+
 .btn-action i {
   font-size: 9px;
 }
+
 .btn-action.btn-xs {
   float: left;
   font-size: 9px;
   margin: 1px;
 }
+
 ul.pagination {
   display: block;
   margin-top: 5px;
   width: 100%;
   text-align: center;
 }
+
 ul.pagination li {
   display: inline-block;
 }
@@ -639,6 +619,7 @@ ul.pagination li {
 .bill-print h4 {
   color: red;
 }
+
 .bill-print h5 {
   color: green;
 }
