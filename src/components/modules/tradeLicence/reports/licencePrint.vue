@@ -35,13 +35,13 @@
                       </div>
                     </div>
                     <div class="row" style="text-align:center;padding:10px 0;width:100%;margin:0">
-                      <div class="col-md-3" style="width:17%;float:left;">
+                      <div class="col-md-3" style="width:25%;float:left; padding-right: 0;">
                         <vue-qrcode :text="qrCodeData +
                           `?id=${licence.trade_licence_id}&year=${licence.year}`
                           " :size="100"></vue-qrcode>
                         <div style="text-align:left">
                           <p
-                            style="margin-top: 25px; margin-bottom: 5px; border-bottom:2px solid #ccc; padding: 5px; text-align: center;">
+                            style="margin-top: 25px; margin-bottom: 5px; border-bottom:2px solid #aaa; padding: 5px; text-align: center;">
                             লাইসেন্স ইস্যুর বিবরণ
                           </p>
                           <p style="margin-bottom: 2px;">
@@ -53,18 +53,18 @@
                           </p>
                         </div>
                       </div>
-                      <div class="col-md-6" style="width:66%;float:left;">
+                      <div class="col-md-6" style="width:50%;float:left;">
                         <img :src="base_url + '/images/default/bd.png'" alt="Bangladesh"
                           style="margin: 0 auto; width: 80px;" />
-                        <h6 style="color: red; margin-top:5px;">
+                        <h5 style="border-bottom: 2px solid #aaa;width: 130px;margin: 15px auto;padding-bottom: 3px;">
                           ই-ট্রেড লাইসেন্স
-                        </h6>
+                        </h5>
                         <p>
                           লাইসেন্স নং :
                           <b> {{ licence.trade_licence_no }} </b>
                         </p>
                       </div>
-                      <div class="col-md-3" style="width:17%;float:right;">
+                      <div class="col-md-3" style="width:25%;float:right;">
                         <div style="width: 120px; height: 130px; border: 1px solid #ddd; float: right">
                           <small> ছবি সংযুক্তি </small>
                         </div>
@@ -268,7 +268,7 @@
                               <span> {{ en2bn(licence.vat) }} টাকা </span>
                             </td>
 
-                            <td>(চ) সার্ভিস চার্জ</td>
+                            <td> (চ) সার্ভিস চার্জ</td>
                             <td>:</td>
                             <td>
                               <span>
@@ -309,16 +309,16 @@
                             </th>
                             <th style="border-top: 1px solid #ccc">:</th>
                             <th style="border-top: 1px solid #ccc">
-                              {{ en2bn(licence.total_amount) }} টাকা
+                              {{ en2bn(licence.main_amount) }} টাকা
                             </th>
                           </tr>
 
                           <tr>
                             <td colspan="6" style="text-align:center; padding:30px 0; border-bottom: 2px solid #ddd;">
-                              <b>
-                                অত্র ট্রেড লাইসেন্স এর মেয়াদ ৩০ শে জুন,
-                                {{ getLastYear(licence.year_name) }} পর্যন্ত
-                              </b>
+                              <span>
+                                অত্র ট্রেড লাইসেন্স এর মেয়াদ <b> ৩০ শে জুন,
+                                {{ getLastYear(licence.year_name) }} </b> পর্যন্ত
+                              </span>
                             </td>
                           </tr>
                         </tbody>
@@ -329,20 +329,20 @@
                     </div>
                     <div class="row"
                       style="text-align: center; position: absolute; bottom: 0; margin: 0; left: 0; right: 0;">
-                      <div class="col-md-6" style="margin-bottom: 60px;">
+                      <div class="col-md-6" style="margin-bottom: 60px;width: 50%;float: left;">
                         <p>
-                          <span
+                          <b
                             style="border-top: 1px dashed #000; padding:0 20px; padding-top:5px;width:200px; display: inline-block;">
                             সচিব
-                          </span>
+                          </b>
                         </p>
                       </div>
-                      <div class="col-md-6" style="margin-bottom: 60px;">
+                      <div class="col-md-6" style="margin-bottom: 60px;width: 50%;float: left;">
                         <p>
-                          <span
+                          <b
                             style="border-top: 1px dashed #000; padding:0 20px; padding-top:5px;width:200px; display: inline-block;">
                             চেয়ারম্যান
-                          </span>
+                          </b>
                         </p>
                       </div>
                       <div class="col-md-12">
@@ -495,7 +495,7 @@ export default {
 
 .bill-print {
   width: 210mm;
-  border: 1px solid #000;
+  border: 6px double #000;
   margin: 50px auto;
   font-family: "SolaimanLipi";
   height: 367mm;
@@ -533,7 +533,6 @@ export default {
     margin-top: 20px;
     width: 95%;
     height: 99%;
-    border: none;
   }
   .watermark {
     top:30px;

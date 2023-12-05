@@ -43,10 +43,12 @@ const baseRoutes = [
     { path: '/trade-licence/:id/edit', name: 'editTradeLicence', meta: { parent: 'TradeLicence' }, component: require('@/components/modules/tradeLicence/Edit').default },
     //Trade licence Reports
     { path: '/tl-report/register', name: 'TradeLicenceRegister', meta: { parent: 'TradeLicence' }, component: require('@/components/modules/tradeLicence/reports/registers').default },
-
     { path: '/trade-licence-print', name: 'tradeLicencePrint', meta: { parent: 'TradeLicence' }, component: require('@/components/modules/tradeLicence/reports/licencePrint').default },
-    
     { path: '/trade-licence-details', name: 'tradeLicenceDetails', meta: { layout: 'login' }, component: require('@/components/modules/tradeLicence/reports/tradeLicenceDetails').default },
+
+    // Trade license tax collection
+    { path: '/license-tax-collection/create', name: 'licenseTaxCreate', meta: { parent: 'Tax Collection' }, component: require('@/components/modules/tradeLicence/collection/Create').default },
+    { path: '/license-tax-collections', name: 'licenseTaxCreate', meta: { parent: 'Tax Collection' }, component: require('@/components/modules/tradeLicence/collection/Index').default },
 ]
 const routes = baseRoutes
 const router = new Router({

@@ -128,6 +128,7 @@ export default {
           <i class="fa fa-check-square-o"></i> <span>ট্রেড লাইসেন্স</span><i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="sidebar-submenu">
+          <li><router-link class="router-link" tag="a" to="/license-tax-collection/create"><i class="zmdi zmdi-long-arrow-right"></i> ফি আদায়  </router-link></li>
           <li><router-link class="router-link" tag="a" to="/trade-licence/create"><i class="zmdi zmdi-long-arrow-right"></i> নতুন সংযোজন  </router-link></li>
           <li><router-link class="router-link" tag="a" to="/trade-licence"><i class="zmdi zmdi-long-arrow-right"></i> ট্রেড লাইসেন্স সমূহ  </router-link></li>
           <li><router-link class="router-link" tag="a" to="/trade-licence-fee-generate"><i class="zmdi zmdi-long-arrow-right"></i> ফি জেনারেট   </router-link></li>
@@ -140,6 +141,7 @@ export default {
         </a>
         <ul class="sidebar-submenu">
           <li><router-link class="router-link" tag="a" to="/tl-report/register"><i class="zmdi zmdi-long-arrow-right"></i> ধার্য্য রেজিষ্ট্রার  </router-link></li>
+          <li><router-link class="router-link" tag="a" to="/license-tax-collections"><i class="zmdi zmdi-long-arrow-right"></i> ফি আদায় রেজিষ্ট্রার  </router-link></li>
           <!-- <li><router-link class="router-link" tag="a" to="/tl-report/bill"><i class="zmdi zmdi-long-arrow-right"></i> বিল প্রতিবেদন  </router-link></li>
           <li><router-link class="router-link" tag="a" to="/tl-report/due-tax"><i class="zmdi zmdi-long-arrow-right"></i> বকেয়া প্রতিবেদন  </router-link></li>
           <li><router-link class="router-link" tag="a" to="/tl-report/single"><i class="zmdi zmdi-long-arrow-right"></i> সিঙ্গেল বিল </router-link></li>
