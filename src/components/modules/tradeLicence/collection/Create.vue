@@ -3,7 +3,7 @@ import AreaService from '@/services/AreaService'
 import LicenseTaxCollectionService from '@/services/LicenseTaxCollectionService'
 import vSelect from 'vue-select'
 export default {
-  name: 'TaxCollectionCreate',
+  name: 'TradeLicenseTaxCollectionCreate',
   data () {
     return {
         allData:[],
@@ -200,7 +200,7 @@ async submitButton() {
                 <div class="card-body">
                 <div class="card-title"> ট্রেড লাইসেন্স ট্যাক্স সংগ্রহ
                     <div class="pull-right">
-                      <router-link tag="a" to="/tax-collection" class="btn btn-xs btn-light waves-effect waves-light m-1"><i class="fa fa-list"></i> সকল ট্যাক্স </router-link>
+                      <router-link tag="a" to="/license-tax-collections" class="btn btn-xs btn-light waves-effect waves-light m-1"><i class="fa fa-list"></i> সকল আদায়কৃত কর </router-link>
                     </div>
                 </div>
                 <hr>

@@ -7,7 +7,7 @@
             <div class="card-header card-info">
               <div class="card-btn pull-right">
                 <button class="btn btn-xs btn-primary " v-print="'#printMe'"><i class="fa fa-print"></i> Print</button>
-                <router-link tag="a" to="/tax-collection/create" class="btn btn-xs btn-light waves-effect waves-light m-1"><i class="fa fa-plus-circle"></i> কর আদায় </router-link>
+                <router-link tag="a" to="/license-tax-collection/create" class="btn btn-xs btn-light waves-effect waves-light m-1"><i class="fa fa-plus-circle"></i> কর আদায় </router-link>
               </div>
               <h4 class="card-title"> {{credentials['union']}} ইউনিয়ন পরিষদ ট্রেড লাইসেন্স ফি আদায়ের রেজিষ্টার প্রতিবেদন</h4>
             </div>
