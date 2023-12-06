@@ -48,7 +48,9 @@ const baseRoutes = [
 
     // Trade license tax collection
     { path: '/license-tax-collection/create', name: 'licenseTaxCreate', meta: { parent: 'Tax Collection' }, component: require('@/components/modules/tradeLicence/collection/Create').default },
-    { path: '/license-tax-collections', name: 'licenseTaxCreate', meta: { parent: 'Tax Collection' }, component: require('@/components/modules/tradeLicence/collection/Index').default },
+    { path: '/license-tax-collections', name: 'licenseTaxCollection', meta: { parent: 'Tax Collection' }, component: require('@/components/modules/tradeLicence/collection/Index').default },
+    { path: '/license-tax-collection/:id', name: 'licenseTaxCollectionView', meta: { parent: 'Tax Collection' }, component: require('@/components/modules/tradeLicence/collection/View').default },
+
 ]
 const routes = baseRoutes
 const router = new Router({

@@ -4,6 +4,12 @@ export default {
   index(form) {
     return Api().get("license-tax-collection", { params: form });
   },
+  show(id, form) {
+    return Api().get("license-tax-collection/" + id, { params: form });
+  },
+  delete(id, year) {
+    return Api().delete("license-tax-collection/" + id, { params: { year } });
+  },
   store(params) {
     return Api().post("license-tax-collection", params);
   },

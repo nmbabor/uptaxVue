@@ -128,8 +128,8 @@ export default {
           <i class="fa fa-check-square-o"></i> <span>ট্রেড লাইসেন্স</span><i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="sidebar-submenu">
-          <li><router-link class="router-link" tag="a" to="/license-tax-collection/create"><i class="zmdi zmdi-long-arrow-right"></i> ফি আদায়  </router-link></li>
-          <li><router-link class="router-link" tag="a" to="/trade-licence/create"><i class="zmdi zmdi-long-arrow-right"></i> নতুন সংযোজন  </router-link></li>
+          <li><router-link class="router-link" tag="a" to="/license-tax-collection/create"><i class="fa fa-plus"></i> ফি আদায়  </router-link></li>
+          <li><router-link class="router-link" tag="a" to="/trade-licence/create"><i class="fa fa-plus"></i> নতুন সংযোজন  </router-link></li>
           <li><router-link class="router-link" tag="a" to="/trade-licence"><i class="zmdi zmdi-long-arrow-right"></i> ট্রেড লাইসেন্স সমূহ  </router-link></li>
           <li><router-link class="router-link" tag="a" to="/trade-licence-fee-generate"><i class="zmdi zmdi-long-arrow-right"></i> ফি জেনারেট   </router-link></li>
 

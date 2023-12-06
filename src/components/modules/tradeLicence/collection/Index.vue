@@ -108,7 +108,7 @@
                         <td> {{data.paid_amount}} </td>
                         <td> {{data.due_amount}} </td>
                          <td class="no-print">
-                           <router-link tag="a" :to="{ path: '/tax-collection/'+data.id+'?year='+form.year}" class="btn btn-xs btn-info"><i class="fa fa-print"></i> </router-link>
+                           <router-link tag="a" :to="{ path: '/license-tax-collection/'+data.id+'?year='+form.year}" class="btn btn-xs btn-info"><i class="fa fa-print"></i> </router-link>
                            <button class="btn btn-xs btn-danger" @click="deleteData(data.id)"><i class="fa fa-trash"></i></button>
                          </td>
                       </tr>
@@ -265,7 +265,7 @@
           confirmButtonText: 'Yes, delete it!'
         }).then(function (result) {
           if (result.value) {
-            TaxCollectionService.delete(id,$this.$year).then(response=>{
+            LicenseTaxCollectionService.delete(id,$this.$year).then(response=>{
              $this.$swal({
                   type: 'success',
                   title: 'Successfully Deleted',
@@ -277,7 +277,7 @@
               if(err.response.status===400){
                 $this.$swal({
                   type: 'error',
-                  title: "এটি ডিলেট করা সম্ভব না। এই হোল্ডিং এ আরো একটি জমা রিসিপ্ট রয়েছে।",
+                  title: "এটি ডিলেট করা সম্ভব না। এই লাইসেন্স এ আরো একটি জমা রিসিপ্ট রয়েছে।",
                   showConfirmButton: true
                 })
               }

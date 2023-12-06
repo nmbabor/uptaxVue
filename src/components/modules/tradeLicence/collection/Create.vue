@@ -285,14 +285,8 @@ async submitButton() {
                               <td>{{form.bazar_name}}</td>
                             </tr>
                             <tr>
-                                <th colspan="2"> করের বিবরণ </th>
+                                <th colspan="2"> করের বিবরণ : </th>
                             </tr>
-                            <!-- 
-                                    tax:'',
-        income_tax:'',
-        vat:'',
-        service_charge:'',
-        correction_fee:'', -->
                             <tr> 
                               <td> (ক) ট্রেড লাইসেন্স ফি</td>
                               <td>{{form.tax}}</td>
