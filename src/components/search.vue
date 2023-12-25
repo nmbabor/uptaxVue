@@ -195,6 +195,18 @@
                     <td>{{ tlData.total_paid }}</td>
                     <td>{{ tlData.total_amount - tlData.total_paid }}</td>
                     <td class="no-print">
+                      <router-link
+                        v-if="tlData.total_amount - tlData.total_paid > 0"
+                        title="ডিসকাউন্ট"
+                        class="btn btn-xs btn-info waves-effect waves-light m-1"
+                        v-bind:to="{
+                          name: 'editTradeLicence',
+                          params: { id: tlData.trade_licence_id },
+                          query: { discount: 1 }
+                        }"
+                      >
+                        <i class="fa fa-tag"></i>
+                      </router-link>
                     <router-link
                         title="বিস্তারিত প্রতিবেদন"
                         tag="a"
@@ -206,7 +218,7 @@
                             tlData.year
                         }"
                         class="btn btn-xs btn-info waves-effect waves-light m-1"
-                        ><i class="fa fa-file"></i>
+                        ><i class="fa fa-print"></i>
                       </router-link>
                       <router-link
                         class="btn btn-xs btn-warning waves-effect waves-light m-1"
@@ -224,7 +236,22 @@
                         <i class="fa fa-trash"></i>
                       </button>
                     </td>
-                    <td class="no-print"></td>
+                    <td class="no-print">
+                      <router-link
+                        v-if="tlData.total_amount - tlData.total_paid > 0"
+                        title="বিল আদায়"
+                        tag="a"
+                        :to="{
+                          path:
+                            '/license-tax-collection/create?id=' +
+                            tlData.id +
+                            '&year=' +
+                            tlData.year
+                        }"
+                        class="btn btn-xs btn-success waves-effect waves-light m-1">
+                        <i class="fa fa-plus-circle"></i>
+                      </router-link>
+                    </td>
                   </tr>
                 </tbody>
               </table>

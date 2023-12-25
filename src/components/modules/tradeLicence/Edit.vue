@@ -1,9 +1,9 @@
 <script>
 import AreaService from "@/services/AreaService";
 import TradeLicenceService from "@/services/TradeLicenceService";
-import TaxCollectionService from '@/services/TaxCollectionService';
+import LicenseTaxCollectionService from '@/services/LicenseTaxCollectionService';
 export default {
-  name: "HondingEdit",
+  name: "TradeLicenceEdit",
   data() {
     return {
       loading: false,
@@ -72,7 +72,7 @@ export default {
       });
       this.form = response.data.tradeLicence;
       this.loadBazar();
-      const yearsData = await TaxCollectionService.years()
+      const yearsData = await LicenseTaxCollectionService.years()
       this.years = yearsData.data
       if (response.data.tax != "" && response.data.tax != null) {
         this.area = response.data.area;
@@ -189,7 +189,7 @@ export default {
         <div class="card">
           <div class="card-body">
             <div class="card-title">
-              ট্রেড লাইসেন্স তথ্য সংশোধন
+              ট্রেড লাইসেন্স <span v-if="discount.status == 1"> ডিসকাউন্ট </span> <span v-else> তথ্য সংশোধন </span>
               <div class="pull-right">
                 <router-link tag="a" to="/trade-licence" class="btn btn-xs btn-light waves-effect waves-light m-1"><i
                     class="fa fa-list"></i> সকল ট্রেড লাইসেন্স
@@ -210,10 +210,7 @@ export default {
                   উপজেলাঃ{{ area.upazila_name }} , জেলাঃ
                   {{ area.district_name }} <br />
                   <small>
-                    <span>{{ en2bn(tradeLicence.year_name) }}</span> (<span>{{
-                      tradeLicence.type_name
-                    }}</span>
-                    )
+                    <span>{{ en2bn(tradeLicence.year_name) }}</span>
                   </small>
                 </h6>
                 <table class="table table-bordered table-striped bill-table">
@@ -238,10 +235,6 @@ export default {
                     <td>{{ tradeLicence.organization_name }}</td>
                   </tr>
                   <tr>
-                    <th>ওয়ার্ড নং <b>:</b></th>
-                    <td>{{ en2bn(tradeLicence.word) }}</td>
-                  </tr>
-                  <tr>
                     <th>বাজারের নাম <b>:</b></th>
                     <td>{{ tradeLicence.bazar_name }}</td>
                   </tr>
@@ -249,16 +242,36 @@ export default {
                     <th colspan="2" style="text-align:center">করের বিবরণ</th>
                   </tr>
                   <tr>
-                    <th>পুর্বের বকেয়া<b>:</b></th>
+                    <th>পুর্বের বকেয়া </th>
                     <td>{{ en2bn(tradeLicence.prev_due) }}</td>
                   </tr>
                   <tr>
-                    <th>
-                      বার্ষিক কর
-                      <small>({{ en2bn(tradeLicence.year_name) }})</small>
-                      <b>:</b>
-                    </th>
+                    <th> (ক) ট্রেড লাইসেন্স ফি</th>
                     <td>{{ en2bn(tradeLicence.tax) }}</td>
+                  </tr>
+                  <tr>
+                    <th> (খ) সাইনবোর্ড ফি </th>
+                    <td>{{ en2bn(tradeLicence.signboard_fee) }}</td>
+                  </tr>
+                  <tr>
+                    <th> (গ) ব্যবসা ও পেশা বৃত্তির উপর কর </th>
+                    <td>{{ en2bn(tradeLicence.business_profession_tax) }}</td>
+                  </tr>
+                  <tr>
+                    <th> (ঘ) আয় কর / উৎস কর </th>
+                    <td>{{ en2bn(tradeLicence.income_tax) }}</td>
+                  </tr>
+                  <tr>
+                    <th> (ঙ) ভ্যাট </th>
+                    <td>{{ en2bn(tradeLicence.vat) }}</td>
+                  </tr>
+                  <tr>
+                    <th> (চ) সার্ভিস চার্জ </th>
+                    <td>{{ en2bn(tradeLicence.service_charge) }}</td>
+                  </tr>
+                  <tr>
+                    <th> (ছ) সংশোধন ফি </th>
+                    <td>{{ en2bn(tradeLicence.service_charge) }}</td>
                   </tr>
 
                   <tr v-if="tradeLicence.total_paid > 0">
@@ -286,7 +299,7 @@ export default {
                 </table>
               </div>
 
-              <div class="form-group">
+              <div class="form-group pt-2">
                 <button type="button" @click="discountSubmit" class="btn btn-light px-5">
                   <i class="fa fa-save"></i> সাবমিট
                 </button>
